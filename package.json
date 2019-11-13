@@ -72,6 +72,7 @@
     ]
   },
   "devDependencies": {
+    "eslint-plugin-prettier": "^3.1.1",
     "nodemon": "^1.19.4",
     "prettier": "^1.18.2"
   }
