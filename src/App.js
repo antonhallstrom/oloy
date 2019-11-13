@@ -1,26 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import { Books } from './books'
+import { Restaurants } from './restaurants'
+import { User } from './user'
+
+import { Provider, createClient } from 'urql'
+
+const client = createClient({
+  url: 'http://localhost:4000/graphql',
+})
+
+function useCountInterval(ms) {
+  const [count, setCount] = React.useState(0)
+  let timer = window.setTimeout(() => setCount(count + 1), ms)
+
+  return { count, timer }
 }
 
-export default App;
+function App() {
+  const { count, timer } = useCountInterval(1000)
+
+  function handleStopTimer(timerId) {
+    window.clearTimeout(timerId)
+  }
+
+  return (
+    <Provider value={client}>
+      <p>Count up: {count}s</p>
+      <button onClick={() => handleStopTimer(timer)}>Clear timer</button>
+      <Books />
+      <Restaurants />
+      <User />
+    </Provider>
+  )
+}
+
+export default App
