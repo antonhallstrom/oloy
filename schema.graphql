@@ -17,11 +17,33 @@ enum CacheControlScope {
   PRIVATE
 }
 
+type Location {
+  address: String!
+}
+
+type Mutation {
+  user(name: String, age: Int): User
+}
+
 type Query {
   author: Author
   books: [Book]
   book(id: Int!): Book
+  user: User
+  restaurants: [Restaurant]
+}
+
+type Restaurant {
+  name: String!
+  rating: Int!
+  location: Location!
+  drinkSizes: [String!]!
 }
 
 # The `Upload` scalar type represents a file upload.
 scalar Upload
+
+type User {
+  name: String
+  age: Int
+}

@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 import React from 'react'
-import { useQuery } from 'urql'
+import { useMutation, useQuery } from 'urql'
 import gql from 'graphql-tag'
 
 const getAuthorDetailsFragment = gql`

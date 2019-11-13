@@ -38,7 +38,7 @@
         {
           "env": "apollo",
           "tagName": "gql",
-          "schemaJson": "./schema.json"
+          "schemaJsonFilepath": "./schema.json"
         }
       ]
     }
