@@ -1,29 +1,24 @@
 import React from 'react'
 
-import { Books } from './books'
-import { Restaurants } from './restaurants'
-import { User } from './user'
-
 import { Switch } from './switch'
 
-import { Global, css } from '@emotion/core'
-
-
+import { Global, } from '@emotion/core'
+import { ThemeProvider } from 'emotion-theming'
+import * as t from './theme'
+import { Box } from './box'
 import { Provider, createClient } from 'urql'
+import css from '@styled-system/css'
 
 function GlobalStyles(props) {
   return (
     <Global
-    styles={css`
-      body {
-        background-color: ${props.mode 
-        ? 'black'
-        : 'white'
-        };
-        color: ${props.mode ? 'white' : 'black' };
-        transition: background-color 200ms linear;
+    styles={css({
+      body: {
+        color: 'text',
+        bg: 'background',
+        transition: 'bg 200ms linear'
       }
-    `}
+    })}
     />
   )
 }
@@ -32,35 +27,23 @@ const client = createClient({
   url: 'http://localhost:4000/graphql',
 })
 
-function useCountInterval(ms) {
-  const [count, setCount] = React.useState(0)
-  let timer = window.setTimeout(() => setCount(count + 1), ms)
-
-  return { count, timer }
-}
-
-
-
 function App() {
-  const { count, timer } = useCountInterval(1000)
-  const [mode, setMode] = React.useState(false)
-  function handleStopTimer(timerId) {
-    window.clearTimeout(timerId)
-  }
-
-  function handleColorMode(value) {
-    setMode(value)
-  }
+  const [mode, setMode] = React.useState('light')
+  const theme = t.getTheme(t.theme, mode)
 
   return (
     <Provider value={client}>
-      <GlobalStyles mode={mode}/>
-      <Switch value={mode} onChange={handleColorMode}/>
-      <p>{mode ? 'light' : 'dark'}</p>
-      <button onClick={() => handleStopTimer(timer)}>Clear timer</button>
-      <Books />
-      <Restaurants />
-      <User />
+      <ThemeProvider theme={theme}>
+        <GlobalStyles/>
+        <Switch 
+          labels={['Light', 'Dark']}
+          values={['light', 'dark']} 
+          onChange={setMode}
+        />
+        <Box
+          color="text"
+        >Mode {mode}</Box>
+      </ThemeProvider>
     </Provider>
   )
 }

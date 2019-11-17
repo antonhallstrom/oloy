@@ -1,17 +1,11 @@
+import PropTypes from 'prop-types'
+import * as R from 'ramda'
 import React from 'react'
 import styled from '@emotion/styled'
 
-// input[type=checkbox][checked] + & {
-//   background-color: #2196F3;
-// }
-
-// input[type=checkbox][focus] + & {
-//   box-shadow: 0 0 1px #2196F3;
-// }
-
-// input[type=checkbox][checked] + &:before {
-//   transform: translateX(26px);
-// }
+import css from '@styled-system/css'
+import * as t from './theme'
+import { Box } from './box'
 
 const Label = styled.label`
   position: relative;
@@ -32,7 +26,7 @@ const Slider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: ${t.getColor('switchBackground')};
   transition: .4s;
   border-radius: 9999px;
 
@@ -43,29 +37,51 @@ const Slider = styled.span`
     width: 22px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: ${t.getColor('switchKnob')};
     transition: .4s;
     border-radius: 9999px;
   }
 
-  input[type="checkbox"]:checked + & {
-    background-color: #2196F3;
-  }
+  ${css({
+    'input[type="checkbox"]:checked + &': {
+      bg: 'switchBackgroundChecked'
+    },
+  })}
 
   input:focus + &:before {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px ${t.getColor('switchBackgroundChecked')};
   }
 
   input[type="checkbox"]:checked + &:before {
-   transform: translateX(26px);
+   transform: translateX(30px);
   }
 `
 
 export function Switch(props) {
+  const [checked, setChecked] = React.useState(false)
+
   return (
-    <Label>
-      <Input checked={props.value} type="checkbox" value={props.value} onChange={value => props.onChange(!props.value)}/>
-      <Slider />
-    </Label>
+    <Box display="flex" alignItems="center">
+      {R.head(props.labels)}
+      <Label>
+        <Input
+          checked={checked}
+          type="checkbox"
+          value={checked}
+          onChange={() => {
+            setChecked(!checked)
+            return props.onChange(checked ? R.head(props.values) : R.last(props.values))
+          }}
+        />
+        <Slider />
+      </Label>
+      {R.last(props.labels)}
+    </Box>
   )
+}
+
+Switch.propTypes = {
+  labels: PropTypes.array,
+  values: PropTypes.array,
+  onChange: PropTypes.func
 }
