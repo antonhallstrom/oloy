@@ -1,31 +1,36 @@
 import * as R from 'ramda'
 
 export function getTheme(theme, mode) {
-  return R.equals(mode, 'light') ? theme : R.merge(theme, {
-    colors: R.merge(R.path(['colors'], theme), R.path(['colors', 'modes', mode], theme)),
-  })
+  return R.equals(mode, 'light')
+    ? theme
+    : R.merge(theme, {
+        colors: R.path(['colors', 'modes', mode], theme),
+      })
 }
 
 export const theme = {
   colors: {
     text: '#000000',
-    background: '#ffffff',
+    background: '#E5E5E5',
     switchBackground: '#8E99AB',
-    switchBackgroundChecked: '#AB70E6',
+    switchBackgroundChecked: '#A472EA',
     switchKnob: '#ffffff',
-    switchKnobChecked: '#fafafa',
+    switchKnobChecked: '#6200EE',
     modes: {
       dark: {
         text: '#ffffff',
-        background: '#000000',
-      }
-    }
+        background: '#202124',
+        switchBackground: '#4F3B55',
+        switchBackgroundChecked: '#4F3B55',
+        switchKnobChecked: '#EC8CFF',
+      },
+    },
   },
   fontSizes: [14, 16, 18, 20, 24, 32, 48],
   space: [8, 16, 24, 32, 40, 64, 80, 112, 160],
-  radii: [9999]
+  radii: [9999],
 }
 
-export function getColor(color) {
-  return R.path(['colors', color], theme)
+export function getColor(color, props) {
+  return R.path(['colors', color], props.theme)
 }
