@@ -13,13 +13,14 @@ export const theme = {
     text: '#000000',
     background: '#E5E5E5',
     switchBackground: '#8E99AB',
-    switchBackgroundChecked: '#A472EA',
+    switchBackgroundChecked: '#48a999',
     switchKnob: '#ffffff',
-    switchKnobChecked: '#6200EE',
+    switchKnobChecked: '#00796b',
     modes: {
       dark: {
         text: '#ffffff',
         background: '#202124',
+        switchKnob: '#EC8CFF',
         switchBackground: '#4F3B55',
         switchBackgroundChecked: '#4F3B55',
         switchKnobChecked: '#EC8CFF',

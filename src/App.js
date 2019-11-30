@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Switch } from './switch'
 
-import { Global, } from '@emotion/core'
+import { Global } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import * as t from './theme'
 import { Box } from './box'
@@ -12,13 +12,13 @@ import css from '@styled-system/css'
 function GlobalStyles(props) {
   return (
     <Global
-    styles={css({
-      body: {
-        color: 'text',
-        bg: 'background',
-        transition: 'bg 200ms linear'
-      }
-    })}
+      styles={css({
+        body: {
+          color: 'text',
+          bg: 'background',
+          transition: 'bg 200ms linear',
+        },
+      })}
     />
   )
 }
@@ -34,15 +34,25 @@ function App() {
   return (
     <Provider value={client}>
       <ThemeProvider theme={theme}>
-        <GlobalStyles/>
-        <Switch 
-          labels={['Light', 'Dark']}
-          values={['light', 'dark']} 
-          onChange={setMode}
-        />
-        <Box
-          color="text"
-        >Mode {mode}</Box>
+        <GlobalStyles />
+        <Box py="40px">
+          <Switch
+            labels={['Light', 'Dark']}
+            values={['light', 'dark']}
+            onChange={setMode}
+          />
+          <Switch
+            labels={['On', 'off']}
+            values={['on', 'off']}
+            onChange={() => {}}
+          />
+          <Switch
+            labels={['Light', 'Dark']}
+            values={['light', 'dark']}
+            onChange={() => {}}
+          />
+        </Box>
+        <Box color="text">Mode {mode}</Box>
       </ThemeProvider>
     </Provider>
   )
