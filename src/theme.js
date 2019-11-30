@@ -1,5 +1,10 @@
 import * as R from 'ramda'
 
+const breakpoints = ['500px', '800px', '1000px']
+breakpoints.sm = breakpoints[0]
+breakpoints.md = breakpoints[1]
+breakpoints.lg = breakpoints[2]
+
 export function getTheme(theme, mode) {
   return R.equals(mode, 'light')
     ? theme
@@ -9,13 +14,17 @@ export function getTheme(theme, mode) {
 }
 
 export const theme = {
+  breakpoints,
   colors: {
     text: '#000000',
-    background: '#E5E5E5',
+    textInverted: '#ffffff',
+    background: '#292929',
+    backdropBackground: '#ffffff',
     switchBackground: '#8E99AB',
     switchBackgroundChecked: '#48a999',
     switchKnob: '#ffffff',
     switchKnobChecked: '#00796b',
+    topBarBackground: '#292929',
     modes: {
       dark: {
         text: '#ffffff',
@@ -29,7 +38,7 @@ export const theme = {
   },
   fontSizes: [14, 16, 18, 20, 24, 32, 48],
   space: [8, 16, 24, 32, 40, 64, 80, 112, 160],
-  radii: [9999],
+  radii: [4, 8, 16],
 }
 
 export function getColor(color, props) {
