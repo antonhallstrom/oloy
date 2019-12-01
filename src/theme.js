@@ -31,6 +31,7 @@ export const theme = {
         text: '#ffffff',
         background: '#111111',
         frontLayerBackground: '#292929',
+        backLayerBackground: '#1E1E1E',
         switchKnob: '#EC8CFF',
         switchBackground: '#4F3B55',
         switchBackgroundChecked: '#4F3B55',

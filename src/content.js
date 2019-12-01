@@ -7,13 +7,13 @@ import { Switch } from './switch'
 
 export function Content() {
   const theme = useTheme()
-
   return (
     <Box>
       <div>
         <Switch
           labels={['Light', 'Dark']}
           values={['light', 'dark']}
+          initialValue={theme.mode}
           onChange={theme.setTheme}
         />
       </div>

@@ -57,6 +57,14 @@ const knobVariants = {
 export function Switch(props) {
   const [checked, setChecked] = React.useState(false)
 
+  React.useEffect(() => {
+    if (props.initialValue === R.head(props.values)) {
+      setChecked(false)
+    } else {
+      setChecked(true)
+    }
+  }, [props.initialValue, props.values])
+
   function handleCheck() {
     setChecked(!checked)
     return props.onChange(checked ? R.head(props.values) : R.last(props.values))
@@ -89,6 +97,7 @@ export function Switch(props) {
 
 Switch.propTypes = {
   labels: PropTypes.array,
+  initialValue: PropTypes.string,
   values: PropTypes.array,
   onChange: PropTypes.func,
 }

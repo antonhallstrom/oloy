@@ -46,6 +46,7 @@ function App() {
   const theme = {
     ...t.getTheme(t.theme, mode),
     setTheme: setMode,
+    mode,
   }
 
   return (
