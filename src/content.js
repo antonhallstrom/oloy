@@ -1,0 +1,22 @@
+import React from 'react'
+
+import { useTheme } from 'emotion-theming'
+
+import { Box } from './box'
+import { Switch } from './switch'
+
+export function Content() {
+  const theme = useTheme()
+
+  return (
+    <Box>
+      <div>
+        <Switch
+          labels={['Light', 'Dark']}
+          values={['light', 'dark']}
+          onChange={theme.setTheme}
+        />
+      </div>
+    </Box>
+  )
+}

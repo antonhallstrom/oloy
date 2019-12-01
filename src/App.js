@@ -5,7 +5,10 @@ import { ThemeProvider } from 'emotion-theming'
 import * as t from './theme'
 import { Provider, createClient } from 'urql'
 import styledSystemCss from '@styled-system/css'
-import { TopBar } from './top-bar'
+import { Backdrop } from './backdrop/backdrop'
+import { Box } from './box'
+import { Subheader } from './subheader'
+import { Content } from './content'
 
 function CssReset() {
   return (
@@ -40,19 +43,32 @@ const client = createClient({
 
 function App() {
   const [mode, setMode] = React.useState('light')
-  const theme = t.getTheme(t.theme, mode)
+  const theme = {
+    ...t.getTheme(t.theme, mode),
+    setTheme: setMode,
+  }
 
   return (
     <Provider value={client}>
       <ThemeProvider theme={theme}>
         <CssReset />
         <CssBase />
-        <TopBar />
-        {/* <Switch
-            labels={['Light', 'Dark']}
-            values={['light', 'dark']}
-            onChange={setMode}
-          /> */}
+        <Box minHeight="100vh">
+          <Box
+            minHeight={['calc(100vh - 50px)', '100vh']}
+            flexGrow="1"
+            flexShrink="1"
+            flexBasis="0"
+            display="flex"
+            flexDirection={['row', 'column']}
+          >
+            <Backdrop />
+            <Box display={['none', 'flex']} flexDirection="column" padding={1}>
+              <Subheader />
+              <Content />
+            </Box>
+          </Box>
+        </Box>
       </ThemeProvider>
     </Provider>
   )

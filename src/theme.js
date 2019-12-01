@@ -18,17 +18,19 @@ export const theme = {
   colors: {
     text: '#000000',
     textInverted: '#ffffff',
-    background: '#292929',
-    backdropBackground: '#ffffff',
+    backdropBackground: '#363640',
+    background: '#ffffff',
+    frontLayerBackground: '#ffffff',
     switchBackground: '#8E99AB',
     switchBackgroundChecked: '#48a999',
     switchKnob: '#ffffff',
     switchKnobChecked: '#00796b',
-    topBarBackground: '#292929',
+    backLayerBackground: '#363640',
     modes: {
       dark: {
         text: '#ffffff',
-        background: '#202124',
+        background: '#111111',
+        frontLayerBackground: '#292929',
         switchKnob: '#EC8CFF',
         switchBackground: '#4F3B55',
         switchBackgroundChecked: '#4F3B55',
