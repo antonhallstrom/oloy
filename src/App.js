@@ -9,6 +9,9 @@ import { Backdrop } from './backdrop/backdrop'
 import { Box } from './box'
 import { Subheader } from './subheader'
 import { Content } from './content'
+import { SideMenu } from './side-menu'
+import { GlobalUiState } from './global-ui-state'
+import { Drawer } from './drawer'
 
 function CssReset() {
   return (
@@ -43,33 +46,44 @@ const client = createClient({
 
 function App() {
   const [mode, setMode] = React.useState('light')
+  const [drawerOpen, setDrawerOpen] = React.useState(false)
+
   const theme = {
     ...t.getTheme(t.theme, mode),
     setTheme: setMode,
     mode,
   }
 
+  const uiState = {
+    drawerOpen,
+    setDrawerOpen,
+  }
+
   return (
     <Provider value={client}>
       <ThemeProvider theme={theme}>
-        <CssReset />
-        <CssBase />
-        <Box minHeight="100vh">
-          <Box
-            minHeight={['calc(100vh - 50px)', '100vh']}
-            flexGrow="1"
-            flexShrink="1"
-            flexBasis="0"
-            display="flex"
-            flexDirection={['row', 'column']}
-          >
-            <Backdrop />
-            <Box display={['none', 'flex']} flexDirection="column" padding={1}>
-              <Subheader />
-              <Content />
+        <GlobalUiState.Provider value={uiState}>
+          <CssReset />
+          <CssBase />
+          <Box minHeight="100vh">
+            <Box
+              minHeight={['calc(100vh - 50px)', '100vh']}
+              flexGrow="1"
+              flexShrink="1"
+              flexBasis="0"
+              display="flex"
+              flexDirection={['row', 'column']}
+            >
+              <Backdrop />
+              <Box display={['none', 'flex']} flexDirection="row">
+                <SideMenu />
+                <Subheader />
+                <Content />
+              </Box>
             </Box>
+            <Drawer />
           </Box>
-        </Box>
+        </GlobalUiState.Provider>
       </ThemeProvider>
     </Provider>
   )

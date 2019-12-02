@@ -8,7 +8,7 @@ import { Switch } from './switch'
 export function Content() {
   const theme = useTheme()
   return (
-    <Box>
+    <Box display="flex" flexDirection="column">
       <div>
         <Switch
           labels={['Light', 'Dark']}

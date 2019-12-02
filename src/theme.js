@@ -20,6 +20,7 @@ export const theme = {
     textInverted: '#ffffff',
     backdropBackground: '#363640',
     background: '#ffffff',
+    drawerBackground: '#ffffff',
     frontLayerBackground: '#ffffff',
     switchBackground: '#8E99AB',
     switchBackgroundChecked: '#48a999',
