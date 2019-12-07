@@ -1,22 +1,54 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import * as icons from './icons'
 import { Box } from './box'
+import styled from '@emotion/styled'
+import css from '@styled-system/css'
 
-import { GlobalUiState } from './global-ui-state'
+import { Navigation } from './navigation'
 
-export function Header() {
-  const uiState = React.useContext(GlobalUiState)
+export const HeaderNavigationItem = styled.div`
+  ${css({
+    display: ['flex', 'flex', 'none'],
+    fontSize: 4,
+  })}
+`
 
+export const HeaderActionItem = styled.div`
+  ${css({
+    display: ['flex', 'none'],
+    fontSize: 4,
+  })}
+`
+
+export function Header(props) {
   return (
-    <Box display="flex" alignItems="center">
+    <Box display="flex" justifyContent="space-between" px={2}>
       <Box
         display="flex"
-        fontSize={4}
-        onClick={() => uiState.setDrawerOpen(!uiState.drawerOpen)}
+        alignItems="center"
+        justifyContent="space-between"
+        width="100%"
       >
-        <icons.Menu />
+        <Box display="flex" alignItems="center">
+          {props.navigationItem}
+          <Box pl={2} lineHeight="64px">
+            Header
+          </Box>
+        </Box>
+
+        {props.actionItems}
       </Box>
-      <Box pl={2}>Header</Box>
+      <Box display={['none', 'none', 'flex']}>
+        <Navigation />
+      </Box>
     </Box>
   )
+}
+
+Header.propTypes = {
+  navigationItem: PropTypes.func,
+  actionItems: PropTypes.array,
+  onNavigationCloseClick: PropTypes.func,
+  onNavigationClick: PropTypes.func,
+  onActionClick: PropTypes.func,
 }

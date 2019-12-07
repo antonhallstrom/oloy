@@ -43,6 +43,7 @@ export const theme = {
   fontSizes: [14, 16, 18, 20, 24, 32, 48],
   space: [8, 16, 24, 32, 40, 64, 80, 112, 160],
   radii: [4, 8, 16],
+  shadows: ['0 2px 4px rgba(0,0,0,.5)'],
 }
 
 export function getColor(color, props) {
