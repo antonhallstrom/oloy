@@ -18,6 +18,7 @@ export const theme = {
   colors: {
     text: '#000000',
     textInverted: '#ffffff',
+    headerBackground: '#363640',
     backdropBackground: '#363640',
     background: '#ffffff',
     drawerBackground: '#ffffff',

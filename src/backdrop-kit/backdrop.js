@@ -8,7 +8,6 @@ import { Content } from '../content'
 import { FrontLayer } from './front-layer'
 import { Subheader } from '../subheader'
 import { Header, HeaderActionItem, HeaderNavigationItem } from '../header'
-// import { GlobalUiState } from './global-ui-state'
 
 import * as icons from '../icons'
 

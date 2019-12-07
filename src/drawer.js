@@ -1,5 +1,5 @@
+import PropTypes from 'prop-types'
 import React from 'react'
-import { GlobalUiState } from './global-ui-state'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -24,9 +24,7 @@ const FrontLayer = styled(motion.div)`
   })}
 `
 
-export function Drawer() {
-  const uiState = React.useContext(GlobalUiState)
-
+export function Drawer(props) {
   const frontLayerVariants = {
     open: {
       left: '0px',
@@ -56,9 +54,9 @@ export function Drawer() {
           key="back-layer"
           variants={backLayerVariants}
           initial={{ opacity: 0, display: 'none' }}
-          animate={uiState.drawerOpen ? 'open' : 'closed'}
+          animate={props.drawerOpen ? 'open' : 'closed'}
           exit="closed"
-          onClick={() => uiState.setDrawerOpen(false)}
+          onClick={props.onClose}
         />
       </AnimatePresence>
       <AnimatePresence>
@@ -66,7 +64,7 @@ export function Drawer() {
           key="front-layer"
           variants={frontLayerVariants}
           initial={{ left: '-320px' }}
-          animate={uiState.drawerOpen ? 'open' : 'closed'}
+          animate={props.drawerOpen ? 'open' : 'closed'}
           transition={{
             ease: [0.31, 0.03, 0.23, 0.99],
           }}
@@ -75,4 +73,9 @@ export function Drawer() {
       </AnimatePresence>
     </div>
   )
+}
+
+Drawer.propTypes = {
+  drawerOpen: PropTypes.bool,
+  onClose: PropTypes.func,
 }
