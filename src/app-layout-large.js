@@ -19,7 +19,9 @@ export function AppLayoutLarge(props) {
       <Header navigationTabs={<Navigation />} />
       <Box display="flex" flexDirection="row">
         <SideMenu />
-        <Portfolio />
+        <Box overflow="visible" height="100%" pl="320px">
+          <Portfolio />
+        </Box>
       </Box>
     </Box>
   )

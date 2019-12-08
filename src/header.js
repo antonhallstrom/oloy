@@ -7,14 +7,14 @@ import css from '@styled-system/css'
 export const HeaderNavigationItem = styled.div`
   ${css({
     display: 'flex',
-    fontSize: 4,
+    fontSize: 6,
   })}
 `
 
 export const HeaderActionItem = styled.div`
   ${css({
     display: 'flex',
-    fontSize: 4,
+    fontSize: 6,
   })}
 `
 

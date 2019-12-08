@@ -7,6 +7,7 @@ import { Provider, createClient } from 'urql'
 import styledSystemCss from '@styled-system/css'
 import { Box } from './box'
 import { GlobalUiState } from './global-ui-state'
+import emotionReset from 'emotion-reset'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 import { AppLayout } from './app-layout'
@@ -15,10 +16,15 @@ function CssReset() {
   return (
     <Global
       styles={emotionCss`
+      ${emotionReset}
         *,
         ::before,
         ::after {
           box-sizing: border-box;
+        }
+
+        body {
+          line-height: 1.2;
         }
 
         a {
@@ -35,6 +41,7 @@ function CssBase() {
         body: {
           color: 'text',
           bg: 'background',
+          fontFamily: 'body',
           transition: 'bg 200ms linear',
         },
 
