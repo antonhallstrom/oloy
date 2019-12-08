@@ -1,6 +1,6 @@
 import * as R from 'ramda'
 
-const breakpoints = ['500px', '800px', '1000px']
+const breakpoints = ['500px', '1200px', '1600px']
 breakpoints.sm = breakpoints[0]
 breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
