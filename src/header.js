@@ -3,6 +3,7 @@ import React from 'react'
 import { Box } from './box'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
+import { ZIndex } from './constants'
 
 export const HeaderNavigationItem = styled.div`
   ${css({
@@ -26,6 +27,10 @@ export function Header(props) {
       px={2}
       bg="headerBackground"
       color="textInverted"
+      position="fixed"
+      width="100%"
+      zIndex={ZIndex.header}
+      boxShadow={0}
     >
       <Box
         display="flex"

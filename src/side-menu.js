@@ -38,7 +38,7 @@ const ProgressCursor = styled.div`
   transition: height 0.2s ease, top 0.2s ease;
   width: 100%;
   ${props =>
-    R.not(R.isNil(props.progress)) &&
+    R.is(Number, props.progress) &&
     `
     top: ${props.progress * 49}px;
     height: 20px;
@@ -193,6 +193,14 @@ const portfolioNavigationItems = [
   },
 ]
 
+function getSubItemPosition(hash, items) {
+  const result = R.findIndex(
+    item => R.length(hash) && R.includes(hash, R.prop('to', item)),
+    items
+  )
+  return R.not(R.isNil(result)) && result !== -1 && result
+}
+
 // Used for navigating on the selected page.
 export function SideMenu() {
   const location = useLocation()
@@ -211,8 +219,8 @@ export function SideMenu() {
                 <Box display="flex" flexDirection="column" position="relative">
                   <ProgressBar>
                     <ProgressCursor
-                      progress={R.findIndex(
-                        item => R.includes(location.hash, R.prop('to', item)),
+                      progress={getSubItemPosition(
+                        location.hash,
                         item.subItems
                       )}
                     />
@@ -222,7 +230,10 @@ export function SideMenu() {
                       <ListItem
                         key={subItem.to}
                         to={subItem.to}
-                        active={R.includes(location.hash, subItem.to)}
+                        active={
+                          R.length(location.hash) &&
+                          R.includes(location.hash, subItem.to)
+                        }
                       >
                         {subItem.label}
                       </ListItem>
