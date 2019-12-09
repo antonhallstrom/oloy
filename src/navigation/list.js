@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import * as R from 'ramda'
 import React from 'react'
 import styled from '@emotion/styled'
@@ -5,7 +6,6 @@ import css from '@styled-system/css'
 import { Route, NavLink, useLocation } from 'react-router-dom'
 import { Box } from '../box'
 import { noneOf } from '../none-of'
-import * as portfolio from '../portfolio'
 
 export const Container = styled.div`
   top: 0;
@@ -126,7 +126,7 @@ export function List(props) {
 
   return (
     <React.Fragment>
-      <Heading>Portfolio</Heading>
+      <Heading>{props.header}</Heading>
       <BaseList>
         {R.map(
           item => (
@@ -163,9 +163,14 @@ export function List(props) {
               </Route>
             </React.Fragment>
           ),
-          portfolio.navigationItems
+          props.items
         )}
       </BaseList>
     </React.Fragment>
   )
+}
+
+List.propTypes = {
+  header: PropTypes.string.isRequired,
+  items: PropTypes.array.isRequired,
 }

@@ -3,7 +3,7 @@ import React from 'react'
 import { Box } from './box'
 import * as Navigation from './navigation'
 import { Header } from './header'
-import { Portfolio } from './portfolio'
+import * as portfolio from './portfolio'
 
 export function AppLayoutLarge(props) {
   return (
@@ -18,10 +18,13 @@ export function AppLayoutLarge(props) {
       <Header navigationTabs={<Navigation.Row />} />
       <Box display="flex" flexDirection="row">
         <Navigation.Container>
-          <Navigation.List />
+          <Navigation.List
+            header="Portfolio"
+            items={portfolio.navigationItems}
+          />
         </Navigation.Container>
         <Box overflow="visible" height="100%" pl="320px">
-          <Portfolio />
+          <portfolio.Portfolio />
         </Box>
       </Box>
     </Box>
