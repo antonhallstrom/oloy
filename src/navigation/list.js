@@ -3,10 +3,11 @@ import React from 'react'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { Route, NavLink, useLocation } from 'react-router-dom'
-import { Box } from './box'
-import { noneOf } from './none-of'
+import { Box } from '../box'
+import { noneOf } from '../none-of'
+import * as portfolio from '../portfolio'
 
-const Base = styled.div`
+export const Container = styled.div`
   top: 0;
   position: fixed;
   overflow-y: auto;
@@ -53,7 +54,7 @@ const Heading = styled.div`
   })}
 `
 
-const List = styled.ul`
+const BaseList = styled.ul`
   list-style: none;
   margin: 0;
   display: grid;
@@ -112,87 +113,6 @@ const ListItem = styled(NavLink, { shouldForwardProp: noneOf(['active']) })`
     )}
 `
 
-const portfolioNavigationItems = [
-  {
-    to: '/portfolio/number',
-    label: 'Number',
-    subItems: [
-      {
-        to: '/portfolio/number/#find-pi-to-the-nth-digit',
-        label: 'Find PI to the Nth Digit',
-      },
-      {
-        to: '/portfolio/number/#fibonacci-sequence',
-        label: 'Fibonacci Sequence',
-      },
-      {
-        to: '/portfolio/number/#prime-factorization',
-        label: 'Prime Factorization',
-      },
-    ],
-  },
-  {
-    to: '/portfolio/classic-algorithms',
-    label: 'Classic Algorithms',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/graph',
-    label: 'Graph',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/data-structures',
-    label: 'Data Structures',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/text',
-    label: 'Text',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/networking',
-    label: 'Networking',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/classes',
-    label: 'Classes',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/threading',
-    label: 'Threading',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/web',
-    label: 'Web',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/files',
-    label: 'Files',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/databases',
-    label: 'Databases',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/graphics-and-multimedia',
-    label: 'Graphics and Multimedia',
-    subItems: [],
-  },
-  {
-    to: '/portfolio/security',
-    label: 'Security',
-    subItems: [],
-  },
-]
-
 function getSubItemPosition(hash, items) {
   const result = R.findIndex(
     item => R.length(hash) && R.includes(hash, R.prop('to', item)),
@@ -201,14 +121,13 @@ function getSubItemPosition(hash, items) {
   return R.not(R.isNil(result)) && result !== -1 && result
 }
 
-// Used for navigating on the selected page.
-export function SideMenu() {
+export function List(props) {
   const location = useLocation()
 
   return (
-    <Base>
+    <React.Fragment>
       <Heading>Portfolio</Heading>
-      <List>
+      <BaseList>
         {R.map(
           item => (
             <React.Fragment key={item.to}>
@@ -244,9 +163,9 @@ export function SideMenu() {
               </Route>
             </React.Fragment>
           ),
-          portfolioNavigationItems
+          portfolio.navigationItems
         )}
-      </List>
-    </Base>
+      </BaseList>
+    </React.Fragment>
   )
 }

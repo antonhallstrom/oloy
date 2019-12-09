@@ -2,6 +2,87 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import { Box } from './box'
 
+export const navigationItems = [
+  {
+    to: '/portfolio/number',
+    label: 'Number',
+    subItems: [
+      {
+        to: '/portfolio/number/#find-pi-to-the-nth-digit',
+        label: 'Find PI to the Nth Digit',
+      },
+      {
+        to: '/portfolio/number/#fibonacci-sequence',
+        label: 'Fibonacci Sequence',
+      },
+      {
+        to: '/portfolio/number/#prime-factorization',
+        label: 'Prime Factorization',
+      },
+    ],
+  },
+  {
+    to: '/portfolio/classic-algorithms',
+    label: 'Classic Algorithms',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/graph',
+    label: 'Graph',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/data-structures',
+    label: 'Data Structures',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/text',
+    label: 'Text',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/networking',
+    label: 'Networking',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/classes',
+    label: 'Classes',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/threading',
+    label: 'Threading',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/web',
+    label: 'Web',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/files',
+    label: 'Files',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/databases',
+    label: 'Databases',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/graphics-and-multimedia',
+    label: 'Graphics and Multimedia',
+    subItems: [],
+  },
+  {
+    to: '/portfolio/security',
+    label: 'Security',
+    subItems: [],
+  },
+]
+
 export function Portfolio() {
   return (
     <Route path="/portfolio">

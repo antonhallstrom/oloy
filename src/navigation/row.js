@@ -2,8 +2,11 @@ import * as R from 'ramda'
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from '@emotion/styled'
-import { Box } from './box'
+import { Box } from '../box'
 
+/**
+ * Used for desktop navigation
+ */
 const navigationItems = [
   {
     to: '/portfolio',
@@ -15,7 +18,10 @@ const navigationItems = [
   },
 ]
 
-const NavigationLink = styled(NavLink)`
+/**
+ * Used for desktop navigation
+ */
+const RowLink = styled(NavLink)`
   color: rgba(255, 255, 255, 0.5);
 
   &:hover {
@@ -35,7 +41,7 @@ const NavigationLink = styled(NavLink)`
 /**
  * Used for desktop navigation
  */
-export function Navigation() {
+export function Row() {
   return (
     <Box
       display="grid"
@@ -45,9 +51,9 @@ export function Navigation() {
     >
       {R.map(
         item => (
-          <NavigationLink key={item.to} to={item.to} activeClassName="selected">
+          <RowLink key={item.to} to={item.to} activeClassName="selected">
             {item.label}
-          </NavigationLink>
+          </RowLink>
         ),
         navigationItems
       )}

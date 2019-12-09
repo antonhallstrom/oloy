@@ -6,6 +6,7 @@ import { Header, HeaderNavigationItem } from './header'
 import { Portfolio } from './portfolio'
 import * as icons from './icons'
 import { Drawer } from './drawer'
+import * as Navigation from './navigation'
 
 export function AppLayoutMedium(props) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
@@ -37,7 +38,9 @@ export function AppLayoutMedium(props) {
           <Portfolio />
         </Box>
       </Box>
-      <Drawer drawerOpen={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      <Drawer drawerOpen={drawerOpen} onClose={() => setDrawerOpen(false)}>
+        <Navigation.List />
+      </Drawer>
     </React.Fragment>
   )
 }

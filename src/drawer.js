@@ -3,21 +3,28 @@ import React from 'react'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { motion, AnimatePresence } from 'framer-motion'
+import { GlobalUiState } from './global-ui-state'
 
 const BackLayer = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
+  overflow-y: hidden;
+  height: 100vh;
 `
 
 const FrontLayer = styled(motion.div)`
-  position: absolute;
+  position: fixed;
   top: 0;
+  overflow-y: auto;
+  height: 100vh;
+  ${css({
+    pt: 7,
+    pb: 3,
+  })}
   /* box-shadow: 3px 0px 19px 4px rgba(0, 0, 0, 0.5); */
-  min-height: 100vh;
   width: 300px;
   ${css({
     bg: 'drawerBackground',
@@ -25,6 +32,16 @@ const FrontLayer = styled(motion.div)`
 `
 
 export function Drawer(props) {
+  const uiState = React.useContext(GlobalUiState)
+
+  React.useEffect(() => {
+    if (props.drawerOpen) {
+      uiState.setPreventBodyScroll(true)
+    } else {
+      uiState.setPreventBodyScroll(false)
+    }
+  }, [uiState, props.drawerOpen])
+
   const frontLayerVariants = {
     open: {
       left: '0px',
@@ -69,13 +86,16 @@ export function Drawer(props) {
             ease: [0.31, 0.03, 0.23, 0.99],
           }}
           exit="closed"
-        />
+        >
+          {props.children}
+        </FrontLayer>
       </AnimatePresence>
     </div>
   )
 }
 
 Drawer.propTypes = {
+  children: PropTypes.node,
   drawerOpen: PropTypes.bool,
   onClose: PropTypes.func,
 }

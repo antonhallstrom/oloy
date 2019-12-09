@@ -1,5 +1,5 @@
 import React from 'react'
-
+import * as R from 'ramda'
 import { Global, css as emotionCss } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import * as t from './theme'
@@ -34,21 +34,28 @@ function CssReset() {
     />
   )
 }
-function CssBase() {
+function CssBase(props) {
   return (
     <Global
-      styles={styledSystemCss({
-        body: {
-          color: 'text',
-          bg: 'background',
-          fontFamily: 'body',
-          transition: 'bg 200ms linear',
-        },
-
-        a: {
-          color: 'textInverted',
-        },
-      })}
+      styles={styledSystemCss(
+        R.mergeDeepRight(
+          {
+            body: {
+              color: 'text',
+              bg: 'background',
+              fontFamily: 'body',
+              transition: 'bg 200ms linear',
+            },
+            a: {
+              color: 'textInverted',
+            },
+          },
+          R.defaultTo(
+            {},
+            props.preventBodyScroll && { body: { overflow: 'hidden' } }
+          )
+        )
+      )}
     />
   )
 }
@@ -59,7 +66,7 @@ const client = createClient({
 
 function App() {
   const [mode, setMode] = React.useState('light')
-  const [drawerOpen, setDrawerOpen] = React.useState(false)
+  const [preventBodyScroll, setPreventBodyScroll] = React.useState(false)
 
   const theme = {
     ...t.getTheme(t.theme, mode),
@@ -68,8 +75,8 @@ function App() {
   }
 
   const uiState = {
-    drawerOpen,
-    setDrawerOpen,
+    preventBodyScroll,
+    setPreventBodyScroll,
   }
 
   return (
@@ -77,7 +84,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <GlobalUiState.Provider value={uiState}>
           <CssReset />
-          <CssBase />
+          <CssBase preventBodyScroll={preventBodyScroll} />
           <Router>
             <Box minHeight="100vh">
               <AppLayout />

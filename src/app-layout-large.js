@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { Box } from './box'
-import { SideMenu } from './side-menu'
+import * as Navigation from './navigation'
 import { Header } from './header'
 import { Portfolio } from './portfolio'
-import { Navigation } from './navigation'
 
 export function AppLayoutLarge(props) {
   return (
@@ -16,9 +15,11 @@ export function AppLayoutLarge(props) {
       display="flex"
       flexDirection={['row', 'column']}
     >
-      <Header navigationTabs={<Navigation />} />
+      <Header navigationTabs={<Navigation.Row />} />
       <Box display="flex" flexDirection="row">
-        <SideMenu />
+        <Navigation.Container>
+          <Navigation.List />
+        </Navigation.Container>
         <Box overflow="visible" height="100%" pl="320px">
           <Portfolio />
         </Box>
