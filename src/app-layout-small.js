@@ -5,6 +5,7 @@ import { Subheader } from './subheader'
 import { Header, HeaderActionItem, HeaderNavigationItem } from './header'
 import { Backdrop } from './backdrop'
 import * as icons from './icons'
+import * as portfolio from './portfolio'
 
 function MenuItem(props) {
   const [state, setState] = React.useState('openMenu')
@@ -85,7 +86,23 @@ export function AppLayoutSmall(props) {
             navigationItem={navigationItem}
           />,
         ]}
-        frontLayerComponents={[<Subheader key="subheader" />]}
+        frontLayerComponents={[
+          <Box pb={0}>
+            <Subheader key="subheader" />
+          </Box>,
+          <Box
+            display={openBackdropFrontLayer ? 'block' : 'none'}
+            position="fixed"
+            overflowY="auto"
+            height="100vh"
+            px={1}
+            pb={1}
+            left="0px"
+            right="0px"
+          >
+            <portfolio.Portfolio />
+          </Box>,
+        ]}
         frontLayerExpand={openBackdropFrontLayer}
         onExpandFrontLayer={() => setOpenBackdropFrontLayer(true)}
       />
