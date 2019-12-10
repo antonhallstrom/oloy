@@ -94,7 +94,7 @@ export function AppLayoutSmall(props) {
             display={openBackdropFrontLayer ? 'block' : 'none'}
             position="fixed"
             overflowY="auto"
-            height="100vh"
+            height="calc(100vh - 107px)"
             px={1}
             pb={1}
             left="0px"
