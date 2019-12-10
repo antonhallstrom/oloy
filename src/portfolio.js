@@ -86,7 +86,7 @@ export const navigationItems = [
 export function Portfolio() {
   return (
     <Route path="/portfolio">
-      <Box p={['0px', 4, 8]}>
+      <Box py={['0px', 8, 8, 8]} px={['0px', 7, 8, 8]}>
         Find PI to the Nth Digit - Enter a number and have the program generate
         PI up to that many decimal places. Keep a limit to how far the program
         will go. Find e to the Nth Digit - Just like the previous problem, but

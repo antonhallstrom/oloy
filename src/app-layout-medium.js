@@ -25,12 +25,12 @@ export function AppLayoutMedium(props) {
   return (
     <React.Fragment>
       <Box
-        minHeight={['calc(100vh - 50px)', '100vh']}
+        minHeight="100vh"
         flexGrow="1"
         flexShrink="1"
         flexBasis="0"
         display="flex"
-        flexDirection={['row', 'column']}
+        flexDirection="column"
       >
         <Header navigationItem={navigationItem} />
         <Box flexDirection="row">

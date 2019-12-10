@@ -71,12 +71,12 @@ export function AppLayoutSmall(props) {
 
   return (
     <Box
-      minHeight={['calc(100vh - 50px)', '100vh']}
+      minHeight="calc(100vh - 50px)"
       flexGrow="1"
       flexShrink="1"
       flexBasis="0"
       display="flex"
-      flexDirection={['row', 'column']}
+      flexDirection="row"
     >
       <Backdrop
         backLayerComponents={[
@@ -87,10 +87,11 @@ export function AppLayoutSmall(props) {
           />,
         ]}
         frontLayerComponents={[
-          <Box pb={0}>
+          <Box pb={0} key="sub-header">
             <Subheader key="subheader" />
           </Box>,
           <Box
+            key="portfolio"
             display={openBackdropFrontLayer ? 'block' : 'none'}
             position="fixed"
             overflowY="auto"

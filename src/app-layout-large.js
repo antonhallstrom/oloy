@@ -8,12 +8,12 @@ import * as portfolio from './portfolio'
 export function AppLayoutLarge(props) {
   return (
     <Box
-      minHeight={['calc(100vh - 50px)', '100vh']}
+      minHeight="100vh"
       flexGrow="1"
       flexShrink="1"
       flexBasis="0"
       display="flex"
-      flexDirection={['row', 'column']}
+      flexDirection="column"
     >
       <Header navigationTabs={<Navigation.Row />} />
       <Box display="flex" flexDirection="row">

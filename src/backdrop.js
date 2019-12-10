@@ -20,7 +20,7 @@ const Base = styled.div`
     p: 1,
     borderTopLeftRadius: 2,
     borderTopRightRadius: 2,
-    display: ['block', 'none'],
+    display: 'block',
   })}
 `
 
