@@ -1,24 +1,23 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { Box } from './box'
 import { ProjectLayout } from './project-layout'
 import logo from './logo.svg'
-console.log(logo)
+
 export const navigationItems = [
   {
-    to: '/portfolio/number',
-    label: 'Number',
+    to: '/portfolio/numbers',
+    label: 'Numbers',
     subItems: [
       {
-        to: '/portfolio/number/#find-pi-to-the-nth-digit',
+        to: '/portfolio/numbers/#find-pi-to-the-nth-digit',
         label: 'Find PI to the Nth Digit',
       },
       {
-        to: '/portfolio/number/#fibonacci-sequence',
+        to: '/portfolio/numbers/#fibonacci-sequence',
         label: 'Fibonacci Sequence',
       },
       {
-        to: '/portfolio/number/#prime-factorization',
+        to: '/portfolio/numbers/#prime-factorization',
         label: 'Prime Factorization',
       },
     ],

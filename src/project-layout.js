@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Box } from './box'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
+import { Markdown } from './markdown'
+import { List } from './list'
 
 const Table = styled.table`
   width: 100%;
@@ -26,10 +28,10 @@ const TableRow = styled.tr`
     p: 0,
     borderLeftWidth: '1px',
     borderLeftStyle: 'solid',
-    borderLeftColor: 'tableHeadingBorderColor',
+    borderLeftColor: 'tableRowBorderColor',
     borderTopWidth: '1px',
     borderTopStyle: 'solid',
-    borderTopColor: 'tableHeadingBorderColor',
+    borderTopColor: 'tableRowBorderColor',
   })}
 `
 
@@ -47,7 +49,7 @@ const TableBody = styled.tbody`
   ${css({
     borderBottomWidth: '1px',
     borderBottomStyle: 'solid',
-    borderBottomColor: 'tableHeadingBorderColor',
+    borderBottomColor: 'tableBodyBorderColor',
   })}
 `
 
@@ -57,10 +59,10 @@ const TableData = styled.td`
     p: 1,
     borderLeftWidth: '1px',
     borderLeftStyle: 'solid',
-    borderLeftColor: 'tableHeadingBorderColor',
+    borderLeftColor: 'tableDataBorderColor',
     borderRightWidth: '1px',
     borderRightStyle: 'solid',
-    borderRightColor: 'tableHeadingBorderColor',
+    borderRightColor: 'tableDataBorderColor',
   })}
 `
 
@@ -70,6 +72,40 @@ const LinkStyle = styled.div`
   ${css({
     color: 'tableColor',
   })}
+`
+
+// Feature
+// Rule (as of Gherkin 6)
+// Example (or Scenario)
+// Given, When, Then, And, But (steps)
+// Background
+// Scenario Outline (or Scenario Template)
+// Examples
+
+const gherkinSpec = `
+  **Feature**: Multiple site support
+  &nbsp;&nbsp;Only blog owners can post to a blog, except administrators,
+  &nbsp;&nbsp;who can post to all blogs.
+  &nbsp;
+  **Background**: Given a global administrator named "Greg"
+  &nbsp;&nbsp;And a blog named "Greg's anti-tax rants"
+  &nbsp;&nbsp;And a customer named "Dr. Bill"
+  &nbsp;&nbsp;And a blog named "Expensive Therapy" owned by "Dr. Bill"
+  &nbsp;
+  **Scenario**: Dr. Bill posts to his own blog
+  &nbsp;&nbsp;Given I am logged in as Dr. Bill
+  &nbsp;&nbsp;When I try to post to "Expensive Therapy"
+  &nbsp;&nbsp;Then I should see "Your article was published."
+  &nbsp;
+  **Scenario**: Dr. Bill tries to post to somebody else's blog, and fails
+  &nbsp;&nbsp;Given I am logged in as Dr. Bill
+  &nbsp;&nbsp;When I try to post to "Greg's anti-tax rants"
+  &nbsp;&nbsp;Then I should see "Hey! That's not your blog!"
+  &nbsp;
+  **Scenario**: Greg posts to a client's blog
+  &nbsp;&nbsp;Given I am logged in as Greg
+  &nbsp;&nbsp;When I try to post to "Expensive Therapy"
+  &nbsp;&nbsp;Then I should see "Your article was published."
 `
 
 export function ProjectLayout(props) {
@@ -86,8 +122,20 @@ export function ProjectLayout(props) {
       <Box fontSize={6} pt={3}>
         Specification
       </Box>
-
-      <Box>{props.specification}</Box>
+      <Box my={2}>
+        <List
+          items={[
+            {
+              label: 'Tools',
+              content: [<Markdown key="markdown" markdown={gherkinSpec} />],
+            },
+            {
+              label: 'Features',
+              content: [<Markdown key="markdown" markdown={gherkinSpec} />],
+            },
+          ]}
+        />
+      </Box>
 
       <Box fontSize={6} pt={3}>
         View
@@ -178,38 +226,3 @@ ProjectLayout.propTypes = {
   videoUrl: PropTypes.string,
   projectUrl: PropTypes.string,
 }
-
-// Project
-
-// Project title
-
-// description
-
-// spec
-
-// source code
-
-// plan
-
-// screenshot
-
-// Data table
-
-// programming language
-
-// Screenshots.
-// Video clip.
-// Link to repo.
-
-// run instance of project.
-
-// First glance
-
-// Resources
-
-// Retrospective
-
-// portfolio/project_name, gives url to project.
-
-// if mobile enable iframe and replace with link to running app.
-// heroku platform cloud.

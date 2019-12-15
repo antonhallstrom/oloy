@@ -1,5 +1,15 @@
 import React from 'react'
 
+import styled from '@emotion/styled'
+
+export const SvgIcon = styled.svg`
+  margin-top: -0.105em;
+  margin-bottom: -0.145em;
+  height: 1.25em;
+  width: 1.25em;
+  vertical-align: -0.185em;
+`
+
 export function Close() {
   return (
     <svg
@@ -65,6 +75,40 @@ export function KeyboardBackSpace() {
         fill="currentColor"
       />
     </svg>
+  )
+}
+
+export function KeyboardArrowDown() {
+  return (
+    <SvgIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+        fill="currentColor"
+      />
+      <path fill="none" d="M0 0h24v24H0V0z" />
+    </SvgIcon>
+  )
+}
+
+export function KeyboardArrowUp() {
+  return (
+    <SvgIcon
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+    >
+      <path
+        d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"
+        fill="currentColor"
+      />
+      <path d="M0 0h24v24H0z" fill="none" />
+    </SvgIcon>
   )
 }
 
