@@ -25,6 +25,9 @@ export const theme = {
   colors: {
     text: '#000000',
     textInverted: '#ffffff',
+    tableColor: '#616161',
+    tableHeaderBackground: '#fafafa',
+    tableHeadingBorderColor: '#e5e5e5',
     headerBackground: '#363640',
     backdropBackground: '#363640',
     background: '#ffffff',
@@ -50,7 +53,7 @@ export const theme = {
   },
   fonts,
   fontSizes: [10, 12, 14, 16, 18, 20, 24, 32, 48],
-  space: [8, 16, 24, 32, 40, 64, 80, 112, 160],
+  space: [8, 16, 24, 32, 40, 64, 80, 112, 200],
   radii: [4, 8, 16],
   shadows: ['0 2px 4px rgba(0,0,0,.5)'],
 }
