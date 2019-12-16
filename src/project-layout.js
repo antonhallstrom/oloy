@@ -117,7 +117,10 @@ export function ProjectLayout(props) {
       <Box pt={1} fontSize={5}>
         {props.description}
       </Box>
-      <img alt={props.description} src={props.imgUrl} />
+      {/* <img alt={props.description} src={props.imgUrl} /> */}
+      <Box mt={1}>
+        <Box bg="rgba(0, 0, 0, 0.05)" width="100%" height="300px" />
+      </Box>
 
       <Box fontSize={6} pt={3}>
         Specification

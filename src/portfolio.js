@@ -84,13 +84,13 @@ export const navigationItems = [
   },
 ]
 
-// Create data with graphQL
+// Get data via GraphQL
 
 export function Portfolio() {
   return (
     <Route path="/portfolio">
       <ProjectLayout
-        description="A backdrop appears behind all other surfaces in an app, displaying contextual and actionable content."
+        description="Enter a number and have the program generate PI up to that many decimal places. Keep a limit to how far the program will go"
         name="Find PI to the Nth Digit"
         specification="spec content bontent"
         retrospective="retro fun ass blast"

@@ -1,11 +1,60 @@
+import * as R from 'ramda'
 import React from 'react'
-
+import { useLocation } from 'react-router-dom'
 import { Box } from './box'
-import { Subheader } from './subheader'
 import { Header, HeaderActionItem, HeaderNavigationItem } from './header'
 import { Backdrop } from './backdrop'
 import * as icons from './icons'
 import * as portfolio from './portfolio'
+
+const mapIndexed = R.addIndex(R.map)
+const reduceIndexed = R.addIndex(R.reduce)
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+function insertBetween(value, list) {
+  return reduceIndexed(
+    (acc, v, idx) => {
+      if (R.length(list) - 1 !== idx) {
+        return R.pipe(
+          R.prepend(v),
+          R.prepend(value)
+        )(acc)
+      }
+      return R.prepend(v, acc)
+    },
+    [],
+    list
+  )
+}
+
+function SubHeader() {
+  const location = useLocation()
+  const paths = R.pipe(
+    R.map(capitalize),
+    list => insertBetween('>', list)
+  )(R.filter(R.length, R.split('/', location.pathname)))
+
+  return (
+    <Box
+      display="grid"
+      height="20px"
+      gridGap={0}
+      gridTemplateColumns={`repeat(${R.length(paths)}, max-content)`}
+    >
+      {R.map(
+        path => (
+          <Box key={path} onClick={() => {}}>
+            {path}
+          </Box>
+        ),
+        paths
+      )}
+    </Box>
+  )
+}
 
 function MenuItem(props) {
   const [state, setState] = React.useState('openMenu')
@@ -88,7 +137,7 @@ export function AppLayoutSmall(props) {
         ]}
         frontLayerComponents={[
           <Box pb={0} key="sub-header">
-            <Subheader key="subheader" />
+            <SubHeader />
           </Box>,
           <Box
             key="portfolio"
