@@ -30,7 +30,7 @@ export function Header(props) {
       position="fixed"
       width="100%"
       zIndex={ZIndex.header}
-      boxShadow={0}
+      boxShadow={[null, 0]}
     >
       <Box
         display="flex"

@@ -25,7 +25,24 @@ export const navigationItems = [
   {
     to: '/portfolio/classic-algorithms',
     label: 'Classic Algorithms',
-    subItems: [],
+    subItems: [
+      {
+        to: '/portfolio/classic-algorithms/#collatz-conjecture',
+        label: 'Collatz Conjecture',
+      },
+      {
+        to: '/portfolio/classic-algorithms/#sorting',
+        label: 'Sorting',
+      },
+      {
+        to: '/portfolio/classic-algorithms/#closest-pair-problem',
+        label: 'Closest pair problem',
+      },
+      {
+        to: '/portfolio/classic-algorithms/#sieve-of-Eratosthenes',
+        label: 'Sieve of Eratosthenes',
+      },
+    ],
   },
   {
     to: '/portfolio/graph',
