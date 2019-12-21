@@ -3,14 +3,16 @@ import * as R from 'ramda'
 import { Global, css as emotionCss } from '@emotion/core'
 import { ThemeProvider } from 'emotion-theming'
 import * as t from './theme'
-import { Provider, createClient } from 'urql'
-import styledSystemCss from '@styled-system/css'
-import { Box } from './box'
-import { GlobalUiState } from './global-ui-state'
-import emotionReset from 'emotion-reset'
 
-import { BrowserRouter as Router } from 'react-router-dom'
+import emotionReset from 'emotion-reset'
+import { Provider, createClient } from 'urql'
+
+import styledSystemCss from '@styled-system/css'
+import { GlobalUiState } from './global-ui-state'
+
 import { AppLayout } from './app-layout'
+import { Box } from './box'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 function CssReset() {
   return (
