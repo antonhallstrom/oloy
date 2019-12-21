@@ -1,78 +1,11 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
+
 import { Box } from './box'
-import styled from '@emotion/styled'
-import css from '@styled-system/css'
 import { Markdown } from './markdown'
-import { List } from './list'
-
-const Table = styled.table`
-  width: 100%;
-  ${css({
-    my: 2,
-    color: 'tableColor',
-  })}
-`
-
-const TableHeader = styled.thead`
-  font-weight: 500;
-  ${css({
-    bg: 'tableHeaderBackground',
-  })}
-`
-
-const TableRow = styled.tr`
-  text-align: left;
-  ${css({
-    p: 0,
-    borderLeftWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderLeftColor: 'tableRowBorderColor',
-    borderTopWidth: '1px',
-    borderTopStyle: 'solid',
-    borderTopColor: 'tableRowBorderColor',
-  })}
-`
-
-const TableHeading = styled.th`
-  font-weight: bold;
-  ${css({
-    p: 1,
-    borderRightWidth: '1px',
-    borderRightStyle: 'solid',
-    borderRightColor: 'tableHeadingBorderColor',
-  })}
-`
-
-const TableBody = styled.tbody`
-  ${css({
-    borderBottomWidth: '1px',
-    borderBottomStyle: 'solid',
-    borderBottomColor: 'tableBodyBorderColor',
-  })}
-`
-
-const TableData = styled.td`
-  ${css({
-    color: 'tableColor',
-    p: 1,
-    borderLeftWidth: '1px',
-    borderLeftStyle: 'solid',
-    borderLeftColor: 'tableDataBorderColor',
-    borderRightWidth: '1px',
-    borderRightStyle: 'solid',
-    borderRightColor: 'tableDataBorderColor',
-  })}
-`
-
-const LinkStyle = styled.div`
-  font-weight: bold;
-  text-decoration: underline;
-  ${css({
-    color: 'tableColor',
-  })}
-`
+import { PortfolioList } from './portfolio-list'
+import * as Table from './data-table'
 
 // Feature
 // Rule (as of Gherkin 6)
@@ -108,7 +41,7 @@ const gherkinSpec = `
   &nbsp;&nbsp;Then I should see "Your article was published."
 `
 
-export function ProjectLayout(props) {
+export function PortfolioProjectLayout(props) {
   return (
     <Box py={['0px', 8, 8, 8]} px={['0px', 7, 8, 8]}>
       <Box fontSize={[7, 8]} fontWeight="bold">
@@ -126,7 +59,7 @@ export function ProjectLayout(props) {
         Specification
       </Box>
       <Box my={2}>
-        <List
+        <PortfolioList
           items={[
             {
               label: 'Tools',
@@ -143,84 +76,84 @@ export function ProjectLayout(props) {
       <Box fontSize={6} pt={3}>
         View
       </Box>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeading colspan="2">Source code</TableHeading>
-            <TableHeading colspan="2">In action</TableHeading>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableData>
+      <Table.Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.Heading colspan="2">Source code</Table.Heading>
+            <Table.Heading colspan="2">In action</Table.Heading>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Data>
               <a href="https://github.com/antonhallstrom/numbers">
-                <LinkStyle>Numbers</LinkStyle>
+                <Table.LinkStyle>Numbers</Table.LinkStyle>
               </a>
-            </TableData>
-            <TableData>
+            </Table.Data>
+            <Table.Data>
               <Link to="/">
-                <LinkStyle>Project name</LinkStyle>
+                <Table.LinkStyle>Project name</Table.LinkStyle>
               </Link>
-            </TableData>
-          </TableRow>
-        </TableBody>
-      </Table>
+            </Table.Data>
+          </Table.Row>
+        </Table.Body>
+      </Table.Table>
 
       <Box fontSize={6} pt={3}>
         Manifest
       </Box>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeading colspan="2">Language</TableHeading>
-            <TableHeading colspan="2">Size</TableHeading>
-            <TableHeading colspan="2">Time spent</TableHeading>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableData>Javascript</TableData>
-            <TableData>5kb</TableData>
-            <TableData>1 hour</TableData>
-          </TableRow>
-        </TableBody>
-      </Table>
+      <Table.Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.Heading colspan="2">Language</Table.Heading>
+            <Table.Heading colspan="2">Size</Table.Heading>
+            <Table.Heading colspan="2">Time spent</Table.Heading>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Data>Javascript</Table.Data>
+            <Table.Data>5kb</Table.Data>
+            <Table.Data>1 hour</Table.Data>
+          </Table.Row>
+        </Table.Body>
+      </Table.Table>
 
       <Box fontSize={6} pt={3}>
         Sources
       </Box>
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeading colspan="2">Idea</TableHeading>
-            <TableHeading colspan="2">Concept</TableHeading>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          <TableRow>
-            <TableData>
+      <Table.Table>
+        <Table.Header>
+          <Table.Row>
+            <Table.Heading colspan="2">Idea</Table.Heading>
+            <Table.Heading colspan="2">Concept</Table.Heading>
+          </Table.Row>
+        </Table.Header>
+        <Table.Body>
+          <Table.Row>
+            <Table.Data>
               <a href="https://github.com/karan/Projects">
-                <LinkStyle>karan</LinkStyle>
+                <Table.LinkStyle>karan</Table.LinkStyle>
               </a>
-            </TableData>
-            <TableData>
+            </Table.Data>
+            <Table.Data>
               <Box display="grid" gridGap={0}>
                 <a href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">
-                  <LinkStyle>Milner type system</LinkStyle>
+                  <Table.LinkStyle>Milner type system</Table.LinkStyle>
                 </a>
                 <a href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">
-                  <LinkStyle>Pi</LinkStyle>
+                  <Table.LinkStyle>Pi</Table.LinkStyle>
                 </a>
               </Box>
-            </TableData>
-          </TableRow>
-        </TableBody>
-      </Table>
+            </Table.Data>
+          </Table.Row>
+        </Table.Body>
+      </Table.Table>
     </Box>
   )
 }
 
-ProjectLayout.propTypes = {
+PortfolioProjectLayout.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
   specification: PropTypes.string,

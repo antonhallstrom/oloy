@@ -1,8 +1,9 @@
 import * as R from 'ramda'
 import React from 'react'
-import { NavLink } from 'react-router-dom'
 import styled from '@emotion/styled'
+
 import { Box } from '../box'
+import { NavLink } from 'react-router-dom'
 
 /**
  * Used for desktop navigation

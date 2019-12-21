@@ -3,7 +3,7 @@ import React from 'react'
 import { Box } from './box'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
-import { ZIndex } from './constants'
+import { ZIndex, ComponentHeights } from './constants'
 
 export const HeaderNavigationItem = styled.div`
   ${css({
@@ -19,6 +19,9 @@ export const HeaderActionItem = styled.div`
   })}
 `
 
+/**
+ * Used to display current page, navigation links, and application logo.
+ */
 export function Header(props) {
   return (
     <Box
@@ -40,7 +43,7 @@ export function Header(props) {
       >
         <Box display="flex" alignItems="center">
           {props.navigationItem}
-          <Box pl={2} lineHeight="64px">
+          <Box pl={2} lineHeight={`${ComponentHeights.header}px`}>
             Header
           </Box>
         </Box>

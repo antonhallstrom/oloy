@@ -1,13 +1,15 @@
 import React from 'react'
 
 import { Box } from './box'
-import { Subheader } from './subheader'
 import { Header, HeaderNavigationItem } from './header'
 import * as portfolio from './portfolio'
 import * as icons from './icons'
 import { Drawer } from './drawer'
 import * as Navigation from './navigation'
 
+/**
+ * Composed of top header, toggle navigation drawer, and content container.
+ */
 export function AppLayoutMedium(props) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
 
@@ -34,7 +36,6 @@ export function AppLayoutMedium(props) {
       >
         <Header navigationItem={navigationItem} />
         <Box flexDirection="row">
-          <Subheader />
           <portfolio.Portfolio />
         </Box>
       </Box>

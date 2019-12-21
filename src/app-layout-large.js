@@ -1,10 +1,13 @@
 import React from 'react'
 
 import { Box } from './box'
-import * as Navigation from './navigation'
 import { Header } from './header'
+import * as Navigation from './navigation'
 import * as portfolio from './portfolio'
 
+/**
+ * Composed of top header, side menu navigation and a content container.
+ */
 export function AppLayoutLarge(props) {
   return (
     <Box
@@ -17,12 +20,12 @@ export function AppLayoutLarge(props) {
     >
       <Header navigationTabs={<Navigation.Row />} />
       <Box display="flex" flexDirection="row">
-        <Navigation.Container>
+        <Navigation.SideMenu>
           <Navigation.List
             header="Portfolio"
             items={portfolio.navigationItems}
           />
-        </Navigation.Container>
+        </Navigation.SideMenu>
         <Box overflow="visible" height="100%" pl="320px">
           <portfolio.Portfolio />
         </Box>

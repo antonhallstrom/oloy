@@ -1,7 +1,6 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { ProjectLayout } from './project-layout'
-import logo from './logo.svg'
+import { PortfolioProjectLayout } from './portfolio-project-layout'
 
 export const navigationItems = [
   {
@@ -101,17 +100,15 @@ export const navigationItems = [
   },
 ]
 
-// Get data via GraphQL
-
 export function Portfolio() {
   return (
     <Route path="/portfolio">
-      <ProjectLayout
+      <PortfolioProjectLayout
         description="Enter a number and have the program generate PI up to that many decimal places. Keep a limit to how far the program will go"
         name="Find PI to the Nth Digit"
         specification="spec content bontent"
         retrospective="retro fun ass blast"
-        imgUrl={logo}
+        imgUrl=""
         videoUrl="/videoUrl"
         projectUrl="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
       />

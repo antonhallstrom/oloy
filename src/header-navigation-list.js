@@ -1,24 +1,60 @@
-import PropTypes from 'prop-types'
 import * as R from 'ramda'
 import React from 'react'
-import { Route, NavLink, useLocation } from 'react-router-dom'
+import { Route, useLocation, NavLink } from 'react-router-dom'
+import { Box } from './box'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
-import { noneOf } from '../none-of'
+import { noneOf } from './none-of'
+import { ComponentHeights } from './constants'
 
-import { Box } from '../box'
+const BaseList = styled.ul`
+  list-style: none;
+  margin: 0;
+  display: grid;
+`
 
-export const SideMenu = styled.div`
-  top: 0;
-  position: fixed;
-  overflow-y: auto;
-  border-right: 1px solid #e5e5e5;
-  height: 100vh;
-  width: 280px;
+const ListHeading = styled(NavLink)`
+  cursor: pointer;
+
   ${css({
-    pt: 7,
-    pb: 3,
+    fontSize: 2,
+    borderRadius: 0,
+    py: 1,
+    px: 2,
+    '&.selected': {
+      fontWeight: 'bold',
+    },
   })}
+`
+
+const ListItem = styled(NavLink, { shouldForwardProp: noneOf(['active']) })`
+  cursor: pointer;
+
+  ${props =>
+    !props.active &&
+    `&:hover {
+    background-color: rgba(255, 255, 255, 0.05),
+    transition: ease-in 0.1s;
+  }`}
+  ${props =>
+    css(
+      R.mergeAll([
+        {
+          fontSize: 2,
+          py: 1,
+          pl: 5,
+          borderRadius: 0,
+        },
+        R.defaultTo(
+          {},
+          props.active && {
+            bg: 'rgba(255, 255, 255, 0.05)',
+            fontWeight: 'bold',
+            transition: 'ease-in 0.2s',
+          }
+        ),
+      ])
+    )}
 `
 
 const ProgressBar = styled.div`
@@ -32,7 +68,7 @@ const ProgressBar = styled.div`
 `
 
 const ProgressCursor = styled.div`
-  background: #212121;
+  background: rgba(255, 255, 255, 0.5);
   height: 0px;
   top: 0;
   left: 0;
@@ -47,73 +83,6 @@ const ProgressCursor = styled.div`
   `}
 `
 
-const Heading = styled.div`
-  ${css({
-    fontSize: 4,
-    pb: 1,
-    px: 2,
-  })}
-`
-
-const BaseList = styled.ul`
-  list-style: none;
-  margin: 0;
-  display: grid;
-`
-
-const ListHeading = styled(NavLink)`
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.5);
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    transition: ease-in 0.1s;
-  }
-
-  ${css({
-    fontSize: 2,
-    py: 1,
-    px: 2,
-    '&.selected': {
-      color: 'text',
-      fontWeight: 'bold',
-      transition: 'ease-in 0.2s',
-    },
-  })}
-`
-
-const ListItem = styled(NavLink, { shouldForwardProp: noneOf(['active']) })`
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.5);
-
-  ${props =>
-    !props.active &&
-    `&:hover {
-    background-color: rgba(0, 0, 0, 0.05);
-    transition: ease-in 0.1s;
-  }`}
-
-  ${props =>
-    css(
-      R.mergeAll([
-        {
-          fontSize: 2,
-          py: 1,
-          pl: 5,
-        },
-        R.defaultTo(
-          {},
-          props.active && {
-            bg: 'rgba(0, 0, 0, 0.1)',
-            color: 'text',
-            fontWeight: 'bold',
-            transition: 'ease-in 0.2s',
-          }
-        ),
-      ])
-    )}
-`
-
 function getSubItemPosition(hash, items) {
   const result = R.findIndex(
     item => R.length(hash) && R.includes(hash, R.prop('to', item)),
@@ -122,12 +91,21 @@ function getSubItemPosition(hash, items) {
   return R.not(R.isNil(result)) && result !== -1 && result
 }
 
-export function List(props) {
+export function HeaderNavigationList(props) {
   const location = useLocation()
 
   return (
-    <React.Fragment>
-      <Heading>{props.header}</Heading>
+    <Box
+      position="fixed"
+      overflowY="auto"
+      height={`calc(100vh - ${ComponentHeights.header +
+        ComponentHeights.backdrop}px)`}
+      px={1}
+      pb={1}
+      left="0px"
+      right="0px"
+      top={`${ComponentHeights.header}px`}
+    >
       <BaseList>
         {R.map(
           item => (
@@ -167,11 +145,6 @@ export function List(props) {
           props.items
         )}
       </BaseList>
-    </React.Fragment>
+    </Box>
   )
-}
-
-List.propTypes = {
-  header: PropTypes.string.isRequired,
-  items: PropTypes.array.isRequired,
 }

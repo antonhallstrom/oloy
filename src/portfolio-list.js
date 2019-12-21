@@ -32,7 +32,7 @@ const Item = styled.div`
   })}
 `
 
-export function List(props) {
+export function PortfolioList(props) {
   const [expandItem, setExpandItem] = React.useState(null)
 
   function handleExpandItem(item) {
@@ -83,6 +83,6 @@ export function List(props) {
   )
 }
 
-List.propTypes = {
+PortfolioList.propTypes = {
   items: PropTypes.array,
 }

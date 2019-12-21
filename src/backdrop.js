@@ -3,6 +3,8 @@ import React from 'react'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { motion } from 'framer-motion'
+import { ComponentHeights } from './constants'
+
 import { Box } from './box'
 
 export const BackLayer = styled.div`
@@ -28,7 +30,7 @@ export function FrontLayer(props) {
   const variants = {
     more: {
       bottom: 0,
-      height: 'calc(100vh - 68px)',
+      height: `calc(100vh - ${ComponentHeights.header}px)`,
       transition: { type: 'spring', damping: 500, stiffness: 500 },
     },
     less: {
@@ -65,6 +67,11 @@ FrontLayer.propTypes = {
   onExpand: PropTypes.func,
 }
 
+/**
+ * Used to on small screens; composed of two surfaces: a back layer
+ * and a front layer. The back layer displays actions and context,
+ * and these control and inform the front layer’s content.
+ */
 export function Backdrop(props) {
   return (
     <Box width="100%" bg="backLayerBackground">

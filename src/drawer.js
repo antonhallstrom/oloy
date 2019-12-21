@@ -31,6 +31,12 @@ const FrontLayer = styled(motion.div)`
   })}
 `
 
+/**
+ * Used in app medium layout to display navigational links;
+ * composed of two layers, front and back layer, the front layer shows
+ * the content, and the back layer dims the active page to give the front
+ * layer focus.
+ */
 export function Drawer(props) {
   const uiState = React.useContext(GlobalUiState)
 

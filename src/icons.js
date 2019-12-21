@@ -10,6 +10,9 @@ export const SvgIcon = styled.svg`
   vertical-align: -0.185em;
 `
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function Close() {
   return (
     <svg
@@ -27,6 +30,9 @@ export function Close() {
   )
 }
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function Menu() {
   return (
     <svg
@@ -44,6 +50,9 @@ export function Menu() {
   )
 }
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function MoreVertically() {
   return (
     <svg
@@ -61,6 +70,9 @@ export function MoreVertically() {
   )
 }
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function KeyboardBackSpace() {
   return (
     <svg
@@ -78,6 +90,9 @@ export function KeyboardBackSpace() {
   )
 }
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function KeyboardArrowDown() {
   return (
     <SvgIcon
@@ -95,6 +110,9 @@ export function KeyboardArrowDown() {
   )
 }
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function KeyboardArrowUp() {
   return (
     <SvgIcon
@@ -112,6 +130,9 @@ export function KeyboardArrowUp() {
   )
 }
 
+/**
+ * Source [Google Material Design Icons]{@link https://material.io/resources/icons/?style=baseline}
+ */
 export function Share() {
   return (
     <svg
