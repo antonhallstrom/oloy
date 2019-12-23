@@ -1,6 +1,13 @@
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 
+export const Name = styled.div`
+  ${css({
+    fontSize: 6,
+    pt: 3,
+  })}
+`
+
 export const Table = styled.table`
   width: 100%;
   ${css({

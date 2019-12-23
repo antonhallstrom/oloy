@@ -1,11 +1,13 @@
 import PropTypes from 'prop-types'
+import * as R from 'ramda'
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 import { Box } from './box'
 import { Markdown } from './markdown'
 import { PortfolioList } from './portfolio-list'
 import * as Table from './data-table'
+
+const mapIndexed = R.addIndex(R.map)
 
 // Feature
 // Rule (as of Gherkin 6)
@@ -41,6 +43,38 @@ const gherkinSpec = `
   &nbsp;&nbsp;Then I should see "Your article was published."
 `
 
+function TableData(props) {
+  if (R.is(Array, props.column)) {
+    return (
+      <Table.Data>
+        {mapIndexed(
+          (data, index) =>
+            data.url ? (
+              <a href={data.url} key={index}>
+                <Table.LinkStyle>{data.label}</Table.LinkStyle>
+              </a>
+            ) : (
+              <React.Fragment key={index}>{data.value}</React.Fragment>
+            ),
+          props.column
+        )}
+      </Table.Data>
+    )
+  } else {
+    return (
+      <Table.Data>
+        {props.column.url ? (
+          <a href={props.column.url}>
+            <Table.LinkStyle>{props.column.label}</Table.LinkStyle>
+          </a>
+        ) : (
+          props.column.value
+        )}
+      </Table.Data>
+    )
+  }
+}
+
 export function PortfolioProjectLayout(props) {
   return (
     <Box py={['0px', 8, 8, 8]} px={['0px', 7, 8, 8]}>
@@ -55,9 +89,7 @@ export function PortfolioProjectLayout(props) {
         <Box bg="rgba(0, 0, 0, 0.05)" width="100%" height="300px" />
       </Box>
 
-      <Box fontSize={6} pt={3}>
-        Specification
-      </Box>
+      <Table.Name>Specification</Table.Name>
       <Box my={2}>
         <PortfolioList
           items={[
@@ -73,82 +105,45 @@ export function PortfolioProjectLayout(props) {
         />
       </Box>
 
-      <Box fontSize={6} pt={3}>
-        View
-      </Box>
-      <Table.Table>
-        <Table.Header>
-          <Table.Row>
-            <Table.Heading colspan="2">Source code</Table.Heading>
-            <Table.Heading colspan="2">In action</Table.Heading>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          <Table.Row>
-            <Table.Data>
-              <a href="https://github.com/antonhallstrom/numbers">
-                <Table.LinkStyle>Numbers</Table.LinkStyle>
-              </a>
-            </Table.Data>
-            <Table.Data>
-              <Link to="/">
-                <Table.LinkStyle>Project name</Table.LinkStyle>
-              </Link>
-            </Table.Data>
-          </Table.Row>
-        </Table.Body>
-      </Table.Table>
+      {mapIndexed(
+        (data, index) => (
+          <React.Fragment key={`${props.name}-${data.name}-table-${index}`}>
+            <Table.Name>{data.name}</Table.Name>
+            <Table.Table>
+              <Table.Header>
+                <Table.Row>
+                  {mapIndexed(
+                    (row, index) => (
+                      <Table.Heading
+                        key={`${props.name}-${data.name}-row-${index}`}
+                        colspan="2"
+                      >
+                        <Box textAlign="left">{row.label}</Box>
+                      </Table.Heading>
+                    ),
+                    data.rows
+                  )}
+                </Table.Row>
+              </Table.Header>
 
-      <Box fontSize={6} pt={3}>
-        Manifest
-      </Box>
-      <Table.Table>
-        <Table.Header>
-          <Table.Row>
-            <Table.Heading colspan="2">Language</Table.Heading>
-            <Table.Heading colspan="2">Size</Table.Heading>
-            <Table.Heading colspan="2">Time spent</Table.Heading>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          <Table.Row>
-            <Table.Data>Javascript</Table.Data>
-            <Table.Data>5kb</Table.Data>
-            <Table.Data>1 hour</Table.Data>
-          </Table.Row>
-        </Table.Body>
-      </Table.Table>
-
-      <Box fontSize={6} pt={3}>
-        Sources
-      </Box>
-      <Table.Table>
-        <Table.Header>
-          <Table.Row>
-            <Table.Heading colspan="2">Idea</Table.Heading>
-            <Table.Heading colspan="2">Concept</Table.Heading>
-          </Table.Row>
-        </Table.Header>
-        <Table.Body>
-          <Table.Row>
-            <Table.Data>
-              <a href="https://github.com/karan/Projects">
-                <Table.LinkStyle>karan</Table.LinkStyle>
-              </a>
-            </Table.Data>
-            <Table.Data>
-              <Box display="grid" gridGap={0}>
-                <a href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">
-                  <Table.LinkStyle>Milner type system</Table.LinkStyle>
-                </a>
-                <a href="https://en.wikipedia.org/wiki/Hindley%E2%80%93Milner_type_system">
-                  <Table.LinkStyle>Pi</Table.LinkStyle>
-                </a>
-              </Box>
-            </Table.Data>
-          </Table.Row>
-        </Table.Body>
-      </Table.Table>
+              <Table.Body>
+                <Table.Row>
+                  {mapIndexed(
+                    (column, index) => (
+                      <TableData
+                        key={`${props.name}-${data.name}-column-${index}`}
+                        column={column}
+                      />
+                    ),
+                    data.columns
+                  )}
+                </Table.Row>
+              </Table.Body>
+            </Table.Table>
+          </React.Fragment>
+        ),
+        props.tables
+      )}
     </Box>
   )
 }
@@ -156,9 +151,6 @@ export function PortfolioProjectLayout(props) {
 PortfolioProjectLayout.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
-  specification: PropTypes.string,
-  retrospective: PropTypes.string,
-  imgUrl: PropTypes.string,
-  videoUrl: PropTypes.string,
-  projectUrl: PropTypes.string,
+  images: PropTypes.object,
+  tables: PropTypes.array,
 }

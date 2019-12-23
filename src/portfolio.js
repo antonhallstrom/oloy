@@ -1,6 +1,6 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
-import { PortfolioProjectLayout } from './portfolio-project-layout'
+import { Route, Switch } from 'react-router-dom'
+import { PortfolioCategory } from './portfolio-category'
 
 export const navigationItems = [
   {
@@ -102,16 +102,13 @@ export const navigationItems = [
 
 export function Portfolio() {
   return (
-    <Route path="/portfolio">
-      <PortfolioProjectLayout
-        description="Enter a number and have the program generate PI up to that many decimal places. Keep a limit to how far the program will go"
-        name="Find PI to the Nth Digit"
-        specification="spec content bontent"
-        retrospective="retro fun ass blast"
-        imgUrl=""
-        videoUrl="/videoUrl"
-        projectUrl="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
-      />
-    </Route>
+    <React.Fragment>
+      <Route path="/portfolio" />
+      <Switch>
+        <Route path="/portfolio/:category">
+          <PortfolioCategory />
+        </Route>
+      </Switch>
+    </React.Fragment>
   )
 }

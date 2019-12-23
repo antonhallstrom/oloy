@@ -29,8 +29,6 @@ function App() {
     setPreventBodyScroll,
   }
 
-  console.log(uiState)
-
   return (
     <Provider value={client}>
       <ThemeProvider theme={theme}>
