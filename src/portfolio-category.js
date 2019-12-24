@@ -23,6 +23,7 @@ export function PortfolioCategory() {
             name={project.name}
             description={project.description}
             images={project.images}
+            specification={project.specification}
             tables={project.tables}
           />
         ),

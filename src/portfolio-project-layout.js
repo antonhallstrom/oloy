@@ -9,40 +9,52 @@ import * as Table from './data-table'
 
 const mapIndexed = R.addIndex(R.map)
 
-// Feature
-// Rule (as of Gherkin 6)
-// Example (or Scenario)
-// Given, When, Then, And, But (steps)
-// Background
-// Scenario Outline (or Scenario Template)
-// Examples
+/**
+ * @typedef {Object} TableRow
+ * @property {string} label - Row label.
+ */
 
-const gherkinSpec = `
-  **Feature**: Multiple site support
-  &nbsp;&nbsp;Only blog owners can post to a blog, except administrators,
-  &nbsp;&nbsp;who can post to all blogs.
-  &nbsp;
-  **Background**: Given a global administrator named "Greg"
-  &nbsp;&nbsp;And a blog named "Greg's anti-tax rants"
-  &nbsp;&nbsp;And a customer named "Dr. Bill"
-  &nbsp;&nbsp;And a blog named "Expensive Therapy" owned by "Dr. Bill"
-  &nbsp;
-  **Scenario**: Dr. Bill posts to his own blog
-  &nbsp;&nbsp;Given I am logged in as Dr. Bill
-  &nbsp;&nbsp;When I try to post to "Expensive Therapy"
-  &nbsp;&nbsp;Then I should see "Your article was published."
-  &nbsp;
-  **Scenario**: Dr. Bill tries to post to somebody else's blog, and fails
-  &nbsp;&nbsp;Given I am logged in as Dr. Bill
-  &nbsp;&nbsp;When I try to post to "Greg's anti-tax rants"
-  &nbsp;&nbsp;Then I should see "Hey! That's not your blog!"
-  &nbsp;
-  **Scenario**: Greg posts to a client's blog
-  &nbsp;&nbsp;Given I am logged in as Greg
-  &nbsp;&nbsp;When I try to post to "Expensive Therapy"
-  &nbsp;&nbsp;Then I should see "Your article was published."
-`
+/**
+ * @typedef {Object} TableColumn
+ * @property {string} [label] - Label of link.
+ * @property {string} [url] - Link url.
+ * @property {string|number} [value] - Single value
+ */
 
+/**
+ * @typedef {Object} Table
+ * @property {string} name - Table name.
+ * @property {Array.<TableRow>} rows - List of table rows.
+ * @property {string.<TableColumn>} columns - List of table columns.
+ */
+
+/**
+ * @typedef {Object} ProjectSpecification
+ * @property {string} label - Label of specification.
+ * @property {string} content - Markdown content.
+ */
+
+/**
+ * @typedef {Object} ProjectImage
+ * @property {string} alt - Alternate text for an image, if the image cannot be displayed.
+ * @property {string} url - Image url.
+ */
+
+/**
+ * @typedef {Object} Project
+ * @property {string} key - Route identifier.
+ * @property {string} description - Project description.
+ * @property {string} name - Project name.
+ * @property {Array.<ProjectImage>} images - List of project images.
+ * @property {Array.<ProjectSpecification>} specification - List of project specifications.
+ * @property {Array.<Table>} tables - List of project data tables.
+ */
+
+/**
+ * Branch component that maps single or multiple items to table data.
+ * @param {Object} props - React props.
+ * @param {TableColumn} props.column
+ */
 function TableData(props) {
   if (R.is(Array, props.column)) {
     return (
@@ -75,6 +87,14 @@ function TableData(props) {
   }
 }
 
+/**
+ * @param {Object} props - React props.
+ * @param {Project.name} props.name
+ * @param {Project.description} props.description
+ * @param {Project.images} props.images
+ * @param {Project.specification} props.specification
+ * @param {Project.tables} props.specification
+ */
 export function PortfolioProjectLayout(props) {
   return (
     <Box py={['0px', 8, 8, 8]} px={['0px', 7, 8, 8]}>
@@ -84,24 +104,34 @@ export function PortfolioProjectLayout(props) {
       <Box pt={1} fontSize={5}>
         {props.description}
       </Box>
-      {/* <img alt={props.description} src={props.imgUrl} /> */}
-      <Box mt={1}>
-        <Box bg="rgba(0, 0, 0, 0.05)" width="100%" height="300px" />
-      </Box>
+      {mapIndexed(
+        (image, index) => (
+          <Box mt={1} key={`${props.name}-image-${image.url}-${index}`}>
+            {R.not(image.url) ? (
+              <Box bg="rgba(0, 0, 0, 0.05)" width="100%" height="300px" />
+            ) : (
+              <img alt={image.alt} src={image.url} />
+            )}
+          </Box>
+        ),
+        props.images
+      )}
 
       <Table.Name>Specification</Table.Name>
       <Box my={2}>
         <PortfolioList
-          items={[
-            {
-              label: 'Tools',
-              content: [<Markdown key="markdown" markdown={gherkinSpec} />],
-            },
-            {
-              label: 'Features',
-              content: [<Markdown key="markdown" markdown={gherkinSpec} />],
-            },
-          ]}
+          items={mapIndexed(
+            (item, index) => ({
+              label: item.label,
+              content: [
+                <Markdown
+                  key={`${props.name}-markdown-${index}`}
+                  markdown={item.content}
+                />,
+              ],
+            }),
+            props.specification
+          )}
         />
       </Box>
 
@@ -152,5 +182,6 @@ PortfolioProjectLayout.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
   images: PropTypes.object,
+  specification: PropTypes.array,
   tables: PropTypes.array,
 }
