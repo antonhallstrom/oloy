@@ -181,7 +181,7 @@ export function PortfolioProjectLayout(props) {
 PortfolioProjectLayout.propTypes = {
   description: PropTypes.string,
   name: PropTypes.string,
-  images: PropTypes.object,
+  images: PropTypes.array,
   specification: PropTypes.array,
   tables: PropTypes.array,
 }
