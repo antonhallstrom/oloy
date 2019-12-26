@@ -3,7 +3,7 @@ import React from 'react'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { motion } from 'framer-motion'
-import { ComponentHeights } from './constants'
+import { ComponentHeights, ZIndex } from './constants'
 
 import { Box } from './box'
 
@@ -30,6 +30,7 @@ export function FrontLayer(props) {
   const variants = {
     more: {
       bottom: 0,
+      zIndex: ZIndex.backdropFrontLayer,
       height: `calc(100vh - ${ComponentHeights.header}px)`,
       transition: { type: 'spring', damping: 500, stiffness: 500 },
     },

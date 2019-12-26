@@ -98,13 +98,21 @@ export function HeaderNavigationList(props) {
     <Box
       position="fixed"
       overflowY="auto"
-      height={`calc(100vh - ${ComponentHeights.header +
-        ComponentHeights.backdrop}px)`}
+      height={[
+        `calc(100vh - ${ComponentHeights.header +
+          ComponentHeights.headerTabs +
+          ComponentHeights.backdrop}px)`,
+        `calc(100vh - ${ComponentHeights.header +
+          ComponentHeights.backdrop}px)`,
+      ]}
       px={1}
       pb={1}
       left="0px"
       right="0px"
-      top={`${ComponentHeights.header}px`}
+      top={[
+        `${ComponentHeights.header + ComponentHeights.headerTabs}px`,
+        `${ComponentHeights.header}px`,
+      ]}
     >
       <BaseList>
         {R.map(

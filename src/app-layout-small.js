@@ -5,6 +5,7 @@ import { Box } from './box'
 import { Header, HeaderActionItem, HeaderNavigationItem } from './header'
 import { HeaderNavigationList } from './header-navigation-list'
 import { Backdrop } from './backdrop'
+import { Tabs } from './tabs'
 import * as icons from './icons'
 import * as portfolio from './portfolio'
 import { ComponentHeights } from './constants'
@@ -58,14 +59,11 @@ function SubHeader() {
 }
 
 function MenuItem(props) {
-  const [state, setState] = React.useState('openMenu')
-
-  if (state === 'openMenu') {
+  if (props.isOpen) {
     return (
       <div
         onClick={() => {
           props.onClose()
-          setState('closeMenu')
         }}
       >
         <HeaderNavigationItem>
@@ -78,7 +76,6 @@ function MenuItem(props) {
       <div
         onClick={() => {
           props.onOpen()
-          setState('openMenu')
         }}
       >
         <HeaderNavigationItem>
@@ -118,6 +115,7 @@ export function AppLayoutSmall(props) {
   const navigationItem = [
     <MenuItem
       key="menu-item"
+      isOpen={openBackdropFrontLayer}
       onClose={() => setOpenBackdropFrontLayer(false)}
       onOpen={() => setOpenBackdropFrontLayer(true)}
     />,
@@ -138,6 +136,7 @@ export function AppLayoutSmall(props) {
             key="header"
             actionItems={actions}
             navigationItem={navigationItem}
+            navigationTabs={<Tabs key="tabs" />}
           />,
           <HeaderNavigationList
             key="navigation-list"
@@ -145,7 +144,7 @@ export function AppLayoutSmall(props) {
           />,
         ]}
         frontLayerComponents={[
-          <Box pb={0} key="sub-header">
+          <Box pb={openBackdropFrontLayer ? 1 : null} key="sub-header">
             <SubHeader />
           </Box>,
           <Box

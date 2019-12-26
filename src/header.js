@@ -25,9 +25,8 @@ export const HeaderActionItem = styled.div`
 export function Header(props) {
   return (
     <Box
-      display="flex"
+      display={['column', 'flex']}
       justifyContent="space-between"
-      px={2}
       bg="headerBackground"
       color="textInverted"
       position="fixed"
@@ -41,14 +40,13 @@ export function Header(props) {
         justifyContent="space-between"
         width="100%"
       >
-        <Box display="flex" alignItems="center">
+        <Box display="flex" alignItems="center" px={2}>
           {props.navigationItem}
           <Box pl={2} lineHeight={`${ComponentHeights.header}px`}>
             Header
           </Box>
         </Box>
-
-        {props.actionItems}
+        <Box px={2}>{props.actionItems}</Box>
       </Box>
       {props.navigationTabs}
     </Box>

@@ -34,7 +34,10 @@ export function AppLayoutMedium(props) {
         display="flex"
         flexDirection="column"
       >
-        <Header navigationItem={navigationItem} />
+        <Header
+          navigationItem={navigationItem}
+          navigationTabs={<Navigation.Row />}
+        />
         <Box flexDirection="row">
           <portfolio.Portfolio />
         </Box>
