@@ -14,11 +14,9 @@ export function useLayout() {
   const result = R.reduce(
     (acc, item) =>
       item ? R.reduced(lookup[R.indexOf(item, breakpoints)]) : acc,
-    'sm',
+    'lg',
     breakpoints
   )
-
-  console.log(result)
 
   return result
 }
