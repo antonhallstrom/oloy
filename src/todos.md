@@ -7,7 +7,3 @@ TODOS:
 - Add created time on projects. Time start time end?
 
 - Figure out project content.
-
-Fix Unwanted Behavior:
-
-- On a certain breakpoint the app layout is not in sync, on about 500px.

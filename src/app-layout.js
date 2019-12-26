@@ -15,7 +15,7 @@ import { AppLayoutLarge } from './app-layout-large'
 // the readability intact.
 export function AppLayout() {
   const layout = useLayout()
-
+  console.log('lay', layout)
   if (layout === 'sm') {
     return <AppLayoutSmall />
   }

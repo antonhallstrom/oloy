@@ -25,7 +25,8 @@ export const HeaderActionItem = styled.div`
 export function Header(props) {
   return (
     <Box
-      display={['column', 'flex']}
+      display="flex"
+      flexDirection={['column', 'row']}
       justifyContent="space-between"
       bg="headerBackground"
       color="textInverted"
