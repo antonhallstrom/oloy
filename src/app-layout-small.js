@@ -10,6 +10,8 @@ import * as icons from './icons'
 import * as portfolio from './portfolio'
 import { ComponentHeights } from './constants'
 
+import { motion } from 'framer-motion'
+
 const reduceIndexed = R.addIndex(R.reduce)
 
 function capitalize(string) {
@@ -58,32 +60,41 @@ function SubHeader() {
   )
 }
 
+const variants = {
+  open: {
+    rotate: [-180, 0],
+    opacity: [0, 1],
+    transition: { duration: 0.15 },
+  },
+  closed: {
+    rotate: [180, 0],
+    opacity: [0, 1],
+    transition: { duration: 0.15 },
+  },
+}
+
 function MenuItem(props) {
-  if (props.isOpen) {
-    return (
-      <div
-        onClick={() => {
-          props.onClose()
-        }}
-      >
-        <HeaderNavigationItem>
-          <icons.Menu />
-        </HeaderNavigationItem>
-      </div>
-    )
-  } else {
-    return (
-      <div
-        onClick={() => {
-          props.onOpen()
-        }}
-      >
-        <HeaderNavigationItem>
-          <icons.Close />
-        </HeaderNavigationItem>
-      </div>
-    )
-  }
+  return (
+    <motion.div
+      initial="closed"
+      animate={props.isOpen ? 'open' : 'closed'}
+      variants={variants}
+    >
+      {props.isOpen ? (
+        <div onClick={() => props.onClose()}>
+          <HeaderNavigationItem>
+            <icons.Menu />
+          </HeaderNavigationItem>
+        </div>
+      ) : (
+        <div onClick={() => props.onOpen()}>
+          <HeaderNavigationItem>
+            <icons.Close />
+          </HeaderNavigationItem>
+        </div>
+      )}
+    </motion.div>
+  )
 }
 
 // function NavigateBackItem(props) {

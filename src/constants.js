@@ -1,6 +1,7 @@
 export const ZIndex = {
-  header: 1,
   backdropFrontLayer: 2,
+  drawer: 3,
+  header: 1,
 }
 
 /**

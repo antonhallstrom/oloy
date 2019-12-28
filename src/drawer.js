@@ -5,6 +5,20 @@ import css from '@styled-system/css'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GlobalUiState } from './global-ui-state'
 
+import { ComponentHeights, ZIndex } from './constants'
+
+const Header = styled.div`
+  line-height: ${ComponentHeights.header}px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+  ${css({
+    display: 'flex',
+    fontSize: 3,
+    pl: 2,
+    mb: 4,
+  })}
+`
+
 const BackLayer = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -13,6 +27,7 @@ const BackLayer = styled(motion.div)`
   background-color: rgba(0, 0, 0, 0.5);
   overflow-y: hidden;
   height: 100vh;
+  z-index: ${ZIndex.drawer};
 `
 
 const FrontLayer = styled(motion.div)`
@@ -20,11 +35,10 @@ const FrontLayer = styled(motion.div)`
   top: 0;
   overflow-y: auto;
   height: 100vh;
+  z-index: ${ZIndex.drawer};
   ${css({
-    pt: 7,
     pb: 3,
   })}
-  /* box-shadow: 3px 0px 19px 4px rgba(0, 0, 0, 0.5); */
   width: 300px;
   ${css({
     bg: 'drawerBackground',
@@ -93,6 +107,7 @@ export function Drawer(props) {
           }}
           exit="closed"
         >
+          <Header>Logo - Header</Header>
           {props.children}
         </FrontLayer>
       </AnimatePresence>
