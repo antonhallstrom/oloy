@@ -5,14 +5,16 @@ import css from '@styled-system/css'
 import { motion, AnimatePresence } from 'framer-motion'
 import { GlobalUiState } from './global-ui-state'
 
+import { Box } from './box'
 import { ComponentHeights, ZIndex } from './constants'
 
 const Header = styled.div`
-  line-height: ${ComponentHeights.header}px;
+  height: ${ComponentHeights.header}px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   ${css({
     display: 'flex',
+    alignItems: 'center',
     fontSize: 3,
     pl: 2,
     mb: 4,
@@ -107,7 +109,14 @@ export function Drawer(props) {
           }}
           exit="closed"
         >
-          <Header>Logo - Header</Header>
+          <Header>
+            <Box
+              as="img"
+              alt="logo"
+              src="logo.svg"
+              height={ComponentHeights.header / 2}
+            />
+          </Header>
           {props.children}
         </FrontLayer>
       </AnimatePresence>

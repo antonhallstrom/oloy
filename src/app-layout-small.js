@@ -124,12 +124,13 @@ export function AppLayoutSmall(props) {
   ]
 
   const navigationItem = [
-    <MenuItem
-      key="menu-item"
-      isOpen={openBackdropFrontLayer}
-      onClose={() => setOpenBackdropFrontLayer(false)}
-      onOpen={() => setOpenBackdropFrontLayer(true)}
-    />,
+    <Box key="menu-item" pr={2}>
+      <MenuItem
+        isOpen={openBackdropFrontLayer}
+        onClose={() => setOpenBackdropFrontLayer(false)}
+        onOpen={() => setOpenBackdropFrontLayer(true)}
+      />
+    </Box>,
   ]
 
   return (

@@ -8,14 +8,18 @@ import { ZIndex, ComponentHeights } from './constants'
 export const HeaderNavigationItem = styled.div`
   ${css({
     display: 'flex',
+    alignItems: 'center',
     fontSize: 6,
+    height: `${ComponentHeights.header}px`,
   })}
 `
 
 export const HeaderActionItem = styled.div`
   ${css({
     display: 'flex',
+    alignItems: 'center',
     fontSize: 6,
+    height: `${ComponentHeights.header}px`,
   })}
 `
 
@@ -43,8 +47,18 @@ export function Header(props) {
       >
         <Box display="flex" alignItems="center" px={2}>
           {props.navigationItem}
-          <Box pl={2} lineHeight={`${ComponentHeights.header}px`}>
-            Header
+          <Box
+            as="img"
+            alt="logo"
+            src="logo.svg"
+            height={ComponentHeights.header / 2}
+          />
+          <Box
+            display={['none']}
+            pl={2}
+            lineHeight={`${ComponentHeights.header}px`}
+          >
+            Anton Hallström
           </Box>
         </Box>
         <Box px={2}>{props.actionItems}</Box>

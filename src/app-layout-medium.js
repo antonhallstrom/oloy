@@ -14,14 +14,15 @@ export function AppLayoutMedium(props) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
 
   const navigationItem = [
-    <HeaderNavigationItem
-      key="navigation-item"
-      onClick={() => {
-        setDrawerOpen(true)
-      }}
-    >
-      <icons.Menu />
-    </HeaderNavigationItem>,
+    <Box pr={2} key="navigation-item">
+      <HeaderNavigationItem
+        onClick={() => {
+          setDrawerOpen(true)
+        }}
+      >
+        <icons.Menu />
+      </HeaderNavigationItem>
+    </Box>,
   ]
 
   return (
