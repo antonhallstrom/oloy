@@ -7,3 +7,9 @@ TODOS:
 - Add created time on projects. Time start time end?
 
 - Figure out project content.
+
+* Portfolio -> Project
+
+Feature:
+
+- Posibility to filter out content based on job proposition.

@@ -141,7 +141,7 @@ export function List(props) {
                     <ProgressCursor
                       progress={getSubItemPosition(
                         location.hash,
-                        item.subItems
+                        R.pathOr([], ['subItems'], item)
                       )}
                     />
                   </ProgressBar>
@@ -158,7 +158,7 @@ export function List(props) {
                         {subItem.label}
                       </ListItem>
                     ),
-                    item.subItems
+                    R.pathOr([], ['subItems'], item)
                   )}
                 </Box>
               </Route>

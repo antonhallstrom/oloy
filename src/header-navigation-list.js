@@ -127,7 +127,7 @@ export function HeaderNavigationList(props) {
                     <ProgressCursor
                       progress={getSubItemPosition(
                         location.hash,
-                        item.subItems
+                        R.pathOr([], ['subItems'], item)
                       )}
                     />
                   </ProgressBar>
@@ -144,7 +144,7 @@ export function HeaderNavigationList(props) {
                         {subItem.label}
                       </ListItem>
                     ),
-                    item.subItems
+                    R.pathOr([], ['subItems'], item)
                   )}
                 </Box>
               </Route>

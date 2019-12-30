@@ -1,9 +1,11 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 
 import { Box } from './box'
 import { Header } from './header'
 import * as Navigation from './navigation'
-import * as portfolio from './portfolio'
+import * as Portfolio from './portfolio'
+import * as Biography from './biography'
 
 /**
  * Composed of top header, side menu navigation and a content container.
@@ -21,13 +23,22 @@ export function AppLayoutLarge(props) {
       <Header navigationTabs={<Navigation.Row />} />
       <Box display="flex" flexDirection="row">
         <Navigation.SideMenu>
-          <Navigation.List
-            header="Portfolio"
-            items={portfolio.navigationItems}
-          />
+          <Route path="/portfolio">
+            <Navigation.List
+              header="Portfolio"
+              items={Portfolio.navigationItems}
+            />
+          </Route>
+          <Route path="/biography">
+            <Navigation.List
+              header="Biography"
+              items={Biography.navigationItems}
+            />
+          </Route>
         </Navigation.SideMenu>
         <Box overflow="visible" height="100%" pl="320px">
-          <portfolio.Portfolio />
+          <Portfolio.Portfolio />
+          <Biography.Biography />
         </Box>
       </Box>
     </Box>

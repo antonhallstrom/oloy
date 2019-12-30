@@ -14,8 +14,8 @@ const navigationItems = [
     label: 'Portfolio',
   },
   {
-    to: '/about',
-    label: 'About',
+    to: '/biography',
+    label: 'Biography',
   },
 ]
 

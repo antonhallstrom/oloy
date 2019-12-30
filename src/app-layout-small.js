@@ -1,5 +1,7 @@
 import * as R from 'ramda'
 import React from 'react'
+import { Route } from 'react-router-dom'
+
 import { useLocation } from 'react-router-dom'
 import { Box } from './box'
 import { Header, HeaderActionItem, HeaderNavigationItem } from './header'
@@ -7,9 +9,12 @@ import { HeaderNavigationList } from './header-navigation-list'
 import { Backdrop } from './backdrop'
 import { Tabs } from './tabs'
 import * as icons from './icons'
-import * as portfolio from './portfolio'
+import * as Portfolio from './portfolio'
 import { ComponentHeights } from './constants'
+import * as Biography from './biography'
 
+import styled from '@emotion/styled'
+import css from '@styled-system/css'
 import { motion } from 'framer-motion'
 
 const reduceIndexed = R.addIndex(R.reduce)
@@ -33,6 +38,21 @@ function insertBetween(value, list) {
     list
   )
 }
+
+const Layout = styled.div`
+  left: 0px;
+  right: 0px;
+  height: calc(
+    100vh - ${ComponentHeights.header + ComponentHeights.backdrop}px
+  );
+  overflow-y: auto;
+  position: fixed;
+  display: ${props => (props.visible ? 'block' : 'none')};
+  ${css({
+    px: 1,
+    pb: 1,
+  })}
+`
 
 function SubHeader() {
   const location = useLocation()
@@ -150,29 +170,23 @@ export function AppLayoutSmall(props) {
             navigationItem={navigationItem}
             navigationTabs={<Tabs key="tabs" />}
           />,
-          <HeaderNavigationList
-            key="navigation-list"
-            items={portfolio.navigationItems}
-          />,
+          <Route path="/portfolio" key="portfolio-navigation-list">
+            <HeaderNavigationList items={Portfolio.navigationItems} />
+          </Route>,
+          <Route path="/biography" key="biography-navigation-list">
+            <HeaderNavigationList items={Biography.navigationItems} />
+          </Route>,
         ]}
         frontLayerComponents={[
           <Box pb={openBackdropFrontLayer ? 1 : null} key="sub-header">
             <SubHeader />
           </Box>,
-          <Box
-            key="portfolio"
-            display={openBackdropFrontLayer ? 'block' : 'none'}
-            position="fixed"
-            overflowY="auto"
-            height={`calc(100vh - ${ComponentHeights.header +
-              ComponentHeights.backdrop}px)`}
-            px={1}
-            pb={1}
-            left="0px"
-            right="0px"
-          >
-            <portfolio.Portfolio />
-          </Box>,
+          <Layout key="portfolio" visible={openBackdropFrontLayer}>
+            <Portfolio.Portfolio />
+          </Layout>,
+          <Layout key="biography" visible={openBackdropFrontLayer}>
+            <Biography.Biography />
+          </Layout>,
         ]}
         frontLayerExpand={openBackdropFrontLayer}
         onExpandFrontLayer={() => setOpenBackdropFrontLayer(true)}
