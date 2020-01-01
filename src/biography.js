@@ -1,7 +1,8 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import { Box } from './box'
+import { BiographyCategory } from './biography-category'
 
 export const navigationItems = [
   {
@@ -66,7 +67,11 @@ export function Biography() {
   return (
     <Route path="/biography">
       <Box py={['0px', 8, 8, 8]} px={['0px', 7, 8, 8]}>
-        hello
+        <Switch>
+          <Route path="/biography/:category">
+            <BiographyCategory />
+          </Route>
+        </Switch>
       </Box>
     </Route>
   )

@@ -1,14 +1,15 @@
 TODOS:
 
-- Scroll to element hook, so when user clicks on a sub navigation item, the page scroll to that part of the page.
-- Create Tab components, integrate it into the top header for small and medium screens.
 - Project layout, handle image layout, if row or grid.
-- Switch context of navigation lists, when route changes. E.g. About should show about list items when route is /about, and change when route goes to /portfolio.
 - Add created time on projects. Time start time end?
 
 - Figure out project content.
+- Figure out biography content.
 
-* Portfolio -> Project
+Unwanted behavior:
+
+- Fix logo, images will get reloaded on change of layout, look into why it fails to reload.
+- Fix mobile not able to scroll in front layer.
 
 Feature:
 

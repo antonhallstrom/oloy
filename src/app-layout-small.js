@@ -47,7 +47,7 @@ const Layout = styled.div`
   );
   overflow-y: auto;
   position: fixed;
-  display: ${props => (props.visible ? 'block' : 'none')};
+  display: ${props => (props.visible ? 'flex' : 'none')};
   ${css({
     px: 1,
     pb: 1,
