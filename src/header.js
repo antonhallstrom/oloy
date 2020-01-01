@@ -4,6 +4,7 @@ import { Box } from './box'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { ZIndex, ComponentHeights } from './constants'
+import { Link } from 'react-router-dom'
 
 export const HeaderNavigationItem = styled.div`
   ${css({
@@ -47,12 +48,14 @@ export function Header(props) {
       >
         <Box display="flex" alignItems="center" px={2}>
           {props.navigationItem}
-          <Box
-            as="img"
-            alt="logo"
-            src="logo.svg"
-            height={ComponentHeights.header / 2}
-          />
+          <Link to="/">
+            <Box
+              as="img"
+              alt="logo"
+              src="logo.svg"
+              height={ComponentHeights.header / 2}
+            />
+          </Link>
           <Box
             display={['none']}
             pl={2}

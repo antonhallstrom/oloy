@@ -11,6 +11,11 @@ Unwanted behavior:
 
 - Fix logo, images will get reloaded on change of layout, look into why it fails to reload.
 
-Feature:
+Features:
 
+- Code splitting.
 - Posibility to filter out content based on job proposition.
+- Top bar items should have color white by default, on hover grey out the non hovred ones.
+
+* Animate logo at home page.
+* Add head and body fonts.

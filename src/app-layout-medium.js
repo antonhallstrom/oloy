@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { Route } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 
 import { Box } from './box'
 import { Header, HeaderNavigationItem } from './header'
@@ -9,12 +8,14 @@ import * as icons from './icons'
 import { Drawer } from './drawer'
 import * as Navigation from './navigation'
 import * as Biography from './biography'
+import { Home } from './home'
 
 /**
  * Composed of top header, toggle navigation drawer, and content container.
  */
 export function AppLayoutMedium(props) {
   const [drawerOpen, setDrawerOpen] = React.useState(false)
+  const { pathname } = useLocation()
 
   const navigationItem = [
     <Box pr={2} key="navigation-item">
@@ -39,13 +40,14 @@ export function AppLayoutMedium(props) {
         flexDirection="column"
       >
         <Header
-          navigationItem={navigationItem}
+          navigationItem={pathname !== '/' ? navigationItem : []}
           navigationTabs={<Navigation.Row />}
         />
         <Box flexDirection="row">
           <Portfolio.Portfolio />
         </Box>
         <Biography.Biography />
+        <Home />
       </Box>
       <Drawer drawerOpen={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <Route path="/portfolio">

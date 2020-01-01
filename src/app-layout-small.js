@@ -130,7 +130,7 @@ function MenuItem(props) {
  */
 export function AppLayoutSmall(props) {
   const [openBackdropFrontLayer, setOpenBackdropFrontLayer] = React.useState(
-    false
+    true
   )
 
   const actions = [
