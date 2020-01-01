@@ -40,16 +40,15 @@ function insertBetween(value, list) {
 }
 
 const Layout = styled.div`
-  left: 0px;
-  right: 0px;
   height: calc(
     100vh - ${ComponentHeights.header + ComponentHeights.backdrop}px
   );
   overflow-y: auto;
   position: fixed;
   display: ${props => (props.visible ? 'flex' : 'none')};
+  flex-direction: column;
   ${css({
-    px: 1,
+    pr: 1,
     pb: 1,
   })}
 `

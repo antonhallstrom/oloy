@@ -9,7 +9,6 @@ TODOS:
 Unwanted behavior:
 
 - Fix logo, images will get reloaded on change of layout, look into why it fails to reload.
-- Fix mobile not able to scroll in front layer.
 
 Feature:
 
