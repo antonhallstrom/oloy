@@ -1,5 +1,6 @@
 TODOS:
 
+- Landing page
 - Project layout, handle image layout, if row or grid.
 - Add created time on projects. Time start time end?
 
