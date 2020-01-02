@@ -3,6 +3,7 @@ import * as R from 'ramda'
 import { Global, css as emotionCss } from '@emotion/core'
 import emotionReset from 'emotion-reset'
 import styledSystemCss from '@styled-system/css'
+import { css } from '@emotion/core'
 
 export function CssReset() {
   return (
@@ -49,6 +50,22 @@ export function CssBase(props) {
           )
         )
       )}
+    />
+  )
+}
+
+export function CssFontFaces() {
+  return (
+    <Global
+      styles={css`
+        @font-face {
+          font-family: 'Press Start 2P';
+          src: url('/fonts/press-start2p-regular.ttf') format('truetype');
+          font-weight: normal;
+          font-style: normal;
+          font-display: swap;
+        }
+      `}
     />
   )
 }

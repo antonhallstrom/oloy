@@ -2,7 +2,6 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 
 import { Box } from './box'
-import { ComponentHeights } from './constants'
 
 import { motion } from 'framer-motion'
 import styled from '@emotion/styled'
@@ -85,6 +84,7 @@ export function Home() {
             alignItems="center"
             justifyContent="center"
             height="100%"
+            position="relative"
           >
             <Box position="relative">
               <DiamondMotion
@@ -94,6 +94,13 @@ export function Home() {
                   scale: 1,
                 }}
                 animate={{
+                  filter: [
+                    'blur(0px)',
+                    'blur(0px)',
+                    'blur(5px)',
+                    'blur(0px)',
+                    'blur(0px)',
+                  ],
                   rotate: [45, 45, 90, 225, 225],
                   left: '-22px',
                   bottom: '-58px',
@@ -122,6 +129,13 @@ export function Home() {
                   scale: 1,
                 }}
                 animate={{
+                  filter: [
+                    'blur(0px)',
+                    'blur(0px)',
+                    'blur(5px)',
+                    'blur(0px)',
+                    'blur(0px)',
+                  ],
                   rotate: [45, 45, 90, 225, 225],
                   top: '48px',
                   opacity: [1, 0.5, 1, 1, 1],
@@ -150,6 +164,13 @@ export function Home() {
                   scale: 1,
                 }}
                 animate={{
+                  filter: [
+                    'blur(0px)',
+                    'blur(0px)',
+                    'blur(5px)',
+                    'blur(0px)',
+                    'blur(0px)',
+                  ],
                   rotate: [45, 45, 90, 225, 225],
                   left: '22px',
                   bottom: '-58px',
@@ -178,6 +199,13 @@ export function Home() {
                   scale: 1,
                 }}
                 animate={{
+                  filter: [
+                    'blur(0px)',
+                    'blur(0px)',
+                    'blur(5px)',
+                    'blur(0px)',
+                    'blur(0px)',
+                  ],
                   rotate: [45, 45, 90, 225, 225],
                   opacity: [1, 0.5, 1, 1, 1],
                   scale: [0.25, 0.5, 0.8, 1.2, 1],
@@ -200,21 +228,21 @@ export function Home() {
               />
             </Box>
             {/* <Box
+              position="absolute"
+              color="textInverted"
+              fontSize={4}
+              fontFamily="misc"
+              bottom="48px"
+            >
+
+            </Box> */}
+            {/* <Box
             as="img"
             alt="logo"
             src="logo.svg"
             height={ComponentHeights.header}
           /> */}
             {/* </motion.div> */}
-
-            {/* <Box
-            bg="white"
-            color="textInverted"
-            fontSize={6}
-            pt={4}
-          >
-            Anton Hallström
-          </Box> */}
           </Box>
         </Background>
       </Box>

@@ -5,13 +5,6 @@ breakpoints.sm = breakpoints[0]
 breakpoints.md = breakpoints[1]
 breakpoints.lg = breakpoints[2]
 
-const fonts = [
-  'Gilroy, Helvetica, Arial, sans-serif',
-  'Gilroy, Helvetica, Arial, sans-serif',
-]
-fonts.head = fonts[0]
-fonts.body = fonts[1]
-
 export function getTheme(theme, mode) {
   return R.equals(mode, 'light')
     ? theme
@@ -19,6 +12,12 @@ export function getTheme(theme, mode) {
         colors: R.path(['colors', 'modes', mode], theme),
       })
 }
+
+const fonts = ['Arial', 'Arial', `'Press Start 2P', cursive`]
+
+fonts.head = fonts[0]
+fonts.body = fonts[0]
+fonts.misc = fonts[2]
 
 export const theme = {
   breakpoints,

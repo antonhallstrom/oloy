@@ -7,7 +7,7 @@ import { Provider, createClient } from 'urql'
 import { AppLayout } from './app-layout'
 import { Box } from './box'
 import { BrowserRouter as Router } from 'react-router-dom'
-import { CssBase, CssReset } from './global-styles'
+import { CssBase, CssReset, CssFontFaces } from './global-styles'
 import { GlobalUiState } from './global-ui-state'
 
 const client = createClient({
@@ -33,6 +33,7 @@ function App() {
     <Provider value={client}>
       <ThemeProvider theme={theme}>
         <GlobalUiState.Provider value={uiState}>
+          <CssFontFaces />
           <CssReset />
           <CssBase preventBodyScroll={preventBodyScroll} />
           <Router>
