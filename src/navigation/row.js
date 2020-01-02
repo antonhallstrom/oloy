@@ -2,6 +2,8 @@ import * as R from 'ramda'
 import React from 'react'
 import styled from '@emotion/styled'
 
+import css from '@styled-system/css'
+
 import { Box } from '../box'
 import { NavLink } from 'react-router-dom'
 
@@ -23,7 +25,12 @@ const navigationItems = [
  * Used for desktop navigation
  */
 const RowLink = styled(NavLink)`
-  color: rgba(255, 255, 255, 0.5);
+  color: white;
+
+  div:hover > &:not(:hover):not(.selected) {
+    color: rgba(255, 255, 255, 0.5);
+    transition: ease-in 0.1s;
+  }
 
   &:hover {
     color: white;
@@ -39,17 +46,22 @@ const RowLink = styled(NavLink)`
   line-height: 64px;
 `
 
+const Base = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+
+  ${css({
+    gridGap: 4,
+    pr: 4,
+  })}
+`
+
 /**
  * Used for desktop navigation
  */
 export function Row() {
   return (
-    <Box
-      display="grid"
-      gridTemplateColumns="repeat(2, max-content)"
-      gridGap={4}
-      pr={4}
-    >
+    <Base>
       {R.map(
         item => (
           <RowLink key={item.to} to={item.to} activeClassName="selected">
@@ -58,6 +70,6 @@ export function Row() {
         ),
         navigationItems
       )}
-    </Box>
+    </Base>
   )
 }

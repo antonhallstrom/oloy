@@ -66,7 +66,7 @@ export function Home() {
                 ],
               }}
               transition={{
-                delay: 2,
+                delay: 0.2,
                 duration: 4,
                 ease: 'easeInOut',
               }}
@@ -93,7 +93,7 @@ export function Home() {
                 ],
               }}
               transition={{
-                delay: 2,
+                delay: 0.2,
                 duration: 4,
                 ease: 'easeInOut',
               }}
@@ -122,7 +122,7 @@ export function Home() {
                 ],
               }}
               transition={{
-                delay: 2,
+                delay: 0.2,
                 duration: 4,
                 ease: 'easeInOut',
               }}
@@ -148,7 +148,7 @@ export function Home() {
                 ],
               }}
               transition={{
-                delay: 2,
+                delay: 0.2,
                 duration: 4,
                 ease: 'easeInOut',
               }}
