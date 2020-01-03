@@ -15,6 +15,10 @@ Features:
 
 - Code splitting.
 - Posibility to filter out content based on job proposition.
-
-* Animate logo at home page.
-* Add head and body fonts.
+- Add replay action for home animation
+- Cache animation so won't play everytime on visit (maybe)
+- Landing page for Portfolio; should be a small selection of highlighted content.
+- Landing page for Biography; should be a small selection of highlighted content.
+- Animate logo at home page.
+- Add head and body fonts.
+- Add calm transitions between content.
