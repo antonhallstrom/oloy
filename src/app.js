@@ -9,14 +9,28 @@ import { Box } from './box'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { CssBase, CssReset, CssFontFaces } from './global-styles'
 import { GlobalUiState } from './global-ui-state'
+import gql from 'graphql-tag'
+
+import * as urql from 'urql'
+
+const getBooks = gql`
+  query Books {
+    books {
+      title
+    }
+  }
+`
 
 const client = createClient({
-  url: 'http://localhost:4000/graphql',
+  url: 'http://localhost:3001/graphql',
 })
 
 function App() {
   const [mode, setMode] = React.useState('light')
   const [preventBodyScroll, setPreventBodyScroll] = React.useState(false)
+  const [response] = urql.useQuery({ query: getBooks })
+
+  console.log(response)
 
   const theme = {
     ...t.getTheme(t.theme, mode),

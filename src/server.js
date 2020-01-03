@@ -59,6 +59,7 @@ const authors = [
   },
 ]
 
+/* eslint-disable */
 const typeDefs = gql`
   # All these types are just temporary.
 
@@ -102,6 +103,7 @@ const typeDefs = gql`
     age: Int
   }
 `
+/* eslint-enable */
 
 const resolvers = {
   Query: {
@@ -131,6 +133,6 @@ const server = new ApolloServer({ typeDefs, resolvers })
 const app = express()
 server.applyMiddleware({ app })
 
-app.listen({ port: 4000 }, () =>
-  console.log('Server is running on http://localhost:4000' + server.graphqlPath)
+app.listen({ port: 3001 }, () =>
+  console.log('Server is running on http://localhost:3001' + server.graphqlPath)
 )
