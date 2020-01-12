@@ -1,5 +1,6 @@
 import styled from '@emotion/styled'
 import {
+  border,
   position,
   grid,
   typography,
@@ -12,6 +13,7 @@ import {
 
 export const Box = styled.div`
   box-sizing: border-box;
+  ${border}
   ${space}
   ${color}
   ${layout}

@@ -12,7 +12,7 @@ import * as icons from './icons'
 import * as Portfolio from './portfolio'
 import { ComponentHeights } from './constants'
 import * as Biography from './biography'
-
+import { Home } from './home'
 import styled from '@emotion/styled'
 import css from '@styled-system/css'
 import { motion } from 'framer-motion'
@@ -185,6 +185,9 @@ export function AppLayoutSmall(props) {
           </Layout>,
           <Layout key="biography" visible={openBackdropFrontLayer}>
             <Biography.Biography />
+          </Layout>,
+          <Layout key="home" visible={openBackdropFrontLayer}>
+            <Home />
           </Layout>,
         ]}
         frontLayerExpand={openBackdropFrontLayer}

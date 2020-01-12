@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, useLocation } from 'react-router-dom'
+import { Route, useLocation } from 'react-router-dom'
 
 import { Box } from './box'
 import { Header } from './header'

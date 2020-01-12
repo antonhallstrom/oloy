@@ -10,6 +10,7 @@ TODOS:
 Unwanted behavior:
 
 - Fix logo, images will get reloaded on change of layout, look into why it fails to reload.
+- Navigation drawer need to be closed if not on perticular layout (e.g if you drag into a new layout)
 
 Features:
 
@@ -22,3 +23,5 @@ Features:
 - Animate logo at home page.
 - Add head and body fonts.
 - Add calm transitions between content.
+
+Filter projects by higher genre ( art och code)
