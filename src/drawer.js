@@ -112,6 +112,7 @@ export function Drawer(props) {
           <Header>
             <Box
               as="img"
+              key="logo"
               alt="logo"
               src="logo.svg"
               height={ComponentHeights.header / 2}

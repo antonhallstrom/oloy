@@ -50,6 +50,7 @@ export function Header(props) {
           {props.navigationItem}
           <Link to="/">
             <Box
+              key="logo"
               as="img"
               alt="logo"
               src="logo.svg"

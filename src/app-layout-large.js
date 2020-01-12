@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, useLocation } from 'react-router-dom'
+import { Route, Switch, useLocation } from 'react-router-dom'
 
 import { Box } from './box'
 import { Header } from './header'
@@ -24,8 +24,8 @@ export function AppLayoutLarge(props) {
       flexDirection="column"
     >
       <Header navigationTabs={<Navigation.Row />} />
-      {pathname !== '/' && (
-        <Box display="flex" flexDirection="row">
+      <Box display="flex" flexDirection="row">
+        {pathname !== '/' && (
           <Navigation.SideMenu>
             <Route path="/portfolio">
               <Navigation.List
@@ -40,12 +40,18 @@ export function AppLayoutLarge(props) {
               />
             </Route>
           </Navigation.SideMenu>
+        )}
+        <Route path="/portfolio">
           <Box overflow="visible" height="100%" pl="320px">
             <Portfolio.Portfolio />
+          </Box>
+        </Route>
+        <Route path="/biography">
+          <Box overflow="visible" height="100%" pl="320px">
             <Biography.Biography />
           </Box>
-        </Box>
-      )}
+        </Route>
+      </Box>
       <Home />
     </Box>
   )
